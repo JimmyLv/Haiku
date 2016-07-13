@@ -1,0 +1,34 @@
+{
+  "root": true,
+  "extends": "airbnb",
+  "installedESLint": true,
+  "plugins": [
+    "react"
+  ],
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.react.config.js"
+      }
+    }
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "global-require": 0,
+    "comma-dangle": 0,
+    "semi": [2, "never"],
+    "max-len": 0,
+    "eol-last": 0,
+    "no-underscore-dangle": 0,
+    "quote-props": 0,
+    "consistent-return": 0,
+    "react/jsx-space-before-closing": 0,
+    "react/jsx-no-bind": 0
+  }
+}

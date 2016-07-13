@@ -1,0 +1,65 @@
+.nav-sidebar {
+  position: absolute;
+  margin-top: 0;
+  padding-top: 60px;
+  padding-left: 0;
+  padding-right: 0;
+  font-weight: 300;
+  height: 100%;
+
+  .aside1 {
+    background-color: #fff;
+    height: 100%;
+    padding-top: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+
+    .aside1-nav li {
+      a {
+        cursor: pointer;
+        border-radius: 0;
+        color: #000;
+        font-size: 15px;
+        padding: 10px;
+
+        &:hover {
+          background-color: #EAEDEF;
+        }
+      }
+
+      &.active > a {
+        color: #fff;
+        background-color: #000;
+      }
+    }
+
+    .aside1-bottom {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-top: 3px solid #EAEDEF;
+      padding-top: 7px;
+
+      a {
+        margin: 5px;
+        text-decoration: none;
+
+        i {
+          color: #000;
+        }
+      }
+    }
+  }
+
+  .aside2 {
+    overflow-y: auto;
+    height: 100%;
+    width: 73.5%;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #fff;
+  }
+}

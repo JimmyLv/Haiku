@@ -1,10 +1,10 @@
 {
-  "name": "nobackend.website",
+  "name": "TAiKu",
   "version": "1.0.0",
   "description": "A powerful rich interactive web application by using nobackend tech stack.",
   "main": "./src/index.jsx",
   "scripts": {
-    "clean": "rm index.html && rm -rf public && rm -rf _site",
+    "clean": "rm -rf public && rm -rf _site",
     "dev": "webpack-dev-server --config webpack.config.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js --progress --colors --hide-modules",
     "lint": "eslint src/. --ext .jsx --ext .js; exit 0",
@@ -17,9 +17,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JimmyLv/nobackend.website"
+    "url": "git+https://github.com/JimmyLv/TAiKu"
   },
-  "homepage": "http://nobackend.website/",
+  "homepage": "http://TAiKu/",
   "author": "Jimmy Lv",
   "license": "ISC",
   "dependencies": {

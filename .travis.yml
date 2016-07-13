@@ -1,7 +1,7 @@
 sudo: false
 branches:
   only:
-    - gh-pages
+    - master
 language: node_js
 node_js:
   - stable
@@ -15,6 +15,8 @@ script:
   - npm run clean
   - npm run lint
   - npm run build
+  - cat scripts/conf.json.in | sed -e "s/QiNiuAK/$QiNiuAK/" | sed -e "s/QiNiuSK/$QiNiuSK/" > scripts/conf.json
+  - npm run cdn
 after_script:
   - npm run codecov
 cache:
@@ -33,3 +35,15 @@ cache:
 after_success:
   # - firebase deploy --email ${FIREBASE_USERNAME} --password ${FIREBASE_PASSWORD}
   - bash <(curl -s https://codecov.io/bash)
+  - |
+    if [ -n "$GITHUB_API_KEY" ]; then
+      cd public
+      git init
+      git -c user.name='Travis CI' -c user.email='travis@jimmylv.com'
+      git checkout -b gh-pages
+      git add .
+      git commit -m "Deploy at `date +"%Y-%m-%d %H:%M"`"
+      # Make sure to make the output quiet, or else the API token will leak!
+      # This works because the API key can replace your password.
+      git push -f -q https://JimmyLv:$GITHUB_API_KEY@github.com/JimmyLv/TAiKu-gh-pages gh-pages &2>/dev/null
+    fi

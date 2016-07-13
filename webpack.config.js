@@ -65,7 +65,7 @@ const config = {
     new ExtractTextPlugin('[name].css'),
     new HtmlWebpackPlugin({ // 根据模板插入css/js等生成最终HTML
       favicon: './assets/images/favicon.ico', // favicon路径，通过webpack引入同时可以生成hash值
-      filename: '../index.html', // 生成的html存放路径，相对于path
+      filename: './index.html', // 生成的html存放路径，相对于path
       template: './src/index.template', // html模板路径
       inject: 'body', // js插入的位置，true/'head'/'body'/false
       hash: !!isProd, // 为静态资源生成hash值

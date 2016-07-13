@@ -41,7 +41,8 @@ after_success:
     if [ -n "$GITHUB_API_KEY" ]; then
       cd public
       git init
-      git -c user.name='Travis CI' -c user.email='travis@jimmylv.com'
+      git config --global user.email "Travis CI"
+      git config --global user.name "travis@jimmylv.com"
       git checkout -b gh-pages
       git add .
       git commit -m "Deploy at `date +"%Y-%m-%d %H:%M"`"

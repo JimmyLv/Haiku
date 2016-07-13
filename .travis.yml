@@ -20,16 +20,16 @@ after_script:
 cache:
   directories:
     - node_modules
-deploy:
-  provider: s3
-  access_key_id: $S3_ACCESS_KEY_ID
-  secret_access_key: $S3_SECRET_KEY
-  bucket: nobackend.website
-  region: ap-southeast-1
-  skip_cleanup: true
-  local_dir: public
-  on:
-    branch: gh-pages
+# deploy:
+#   provider: s3
+#   access_key_id: $S3_ACCESS_KEY_ID
+#   secret_access_key: $S3_SECRET_KEY
+#   bucket: nobackend.website
+#   region: ap-southeast-1
+#   skip_cleanup: true
+#   local_dir: public
+#   on:
+#     branch: gh-pages
 after_success:
-  - firebase deploy --email ${FIREBASE_USERNAME} --password ${FIREBASE_PASSWORD}
+  # - firebase deploy --email ${FIREBASE_USERNAME} --password ${FIREBASE_PASSWORD}
   - bash <(curl -s https://codecov.io/bash)

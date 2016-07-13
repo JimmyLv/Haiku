@@ -27,7 +27,7 @@ class BlogPage extends Component {
           <ReactDisqus
             shortname="nobackend-website"
             identifier="nobackend-website"
-            title="Nobackend Website"
+            title="TAiKu"
             onNewComment={this.handleNewComment.bind(this)}
           />
         </div>

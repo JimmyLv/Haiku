@@ -1,13 +1,12 @@
-/.idea
-/.happypack
-/node_modules
-/bower_components
+.idea/
+.happypack/
+node_modules/
+bower_components/
 
-/.jekyll-metadata
-/*.log
+.jekyll-metadata
+*.log
 
-/_site
-/_*/*.map
+_site/
 
-/scripts
-/coverage
+scripts/
+coverage/

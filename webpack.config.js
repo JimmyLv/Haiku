@@ -75,7 +75,7 @@ const config = {
 
   resolve: {
     extensions: ['', '.js', '.jsx', '.json'],
-    modulesDirectories: ['node_modules', 'assets/libraries', 'assets/styles', 'assets/images']
+    modulesDirectories: ['node_modules', 'assets/styles', 'assets/images']
   }
 }
 

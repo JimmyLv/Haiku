@@ -34,6 +34,13 @@ cache:
 #   local_dir: public
 #   on:
 #     branch: gh-pages
+deploy:
+  provider: releases
+  api_key: "GITHUB OAUTH TOKEN"
+  file: "FILE TO UPLOAD"
+  skip_cleanup: true
+  on:
+    tags: true
 after_success:
   # - firebase deploy --email ${FIREBASE_USERNAME} --password ${FIREBASE_PASSWORD}
   - bash <(curl -s https://codecov.io/bash)
@@ -44,10 +51,9 @@ after_success:
       git init
       git config --global user.email "Travis CI"
       git config --global user.name "travis@jimmylv.com"
-      git checkout -b gh-pages
       git add .
       git commit -m "Deploy at `date +"%Y-%m-%d %H:%M"`"
       # Make sure to make the output quiet, or else the API token will leak!
       # This works because the API key can replace your password.
-      git push -f -q https://JimmyLv:$GITHUB_API_KEY@github.com/JimmyLv/TAiKu-gh-pages gh-pages &2>/dev/null
+      git push -f -q https://$GITHUB_API_KEY@github.com/JimmyLv/TAiKu.git master:gh-pages > /dev/null 2>&1
     fi

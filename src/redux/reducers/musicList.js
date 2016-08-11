@@ -1,6 +1,6 @@
 import { FETCH_MUSIC } from '../actions'
 
-function musicListReducer(state = {}, action) {
+function musicList(state = {}, action) {
   switch (action.type) {
     case FETCH_MUSIC:
       return [...action.songs]
@@ -9,4 +9,4 @@ function musicListReducer(state = {}, action) {
   }
 }
 
-export default musicListReducer
+export default musicList

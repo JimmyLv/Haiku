@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import './AppContainer.less'
-import Header from '../components/Header/Header'
+import { HeaderContainer } from '../containers'
 import * as actionCreators from '../redux/actions'
 
 class AppContainer extends Component {
@@ -12,30 +12,23 @@ class AppContainer extends Component {
   }
 
   render() {
+    console.info('AppContainer', this.props)
     return (
       <div className="main-app">
-        <Header musicList={this.props.musicList}/>
+        <HeaderContainer />
         {this.props.children}
       </div>
     )
   }
 }
 
+const { func, object } = PropTypes
 AppContainer.propTypes = {
-  musicList: PropTypes.array.isRequired,
-  fetchMusicList: PropTypes.func.isRequired,
-  children: PropTypes.object.isRequired
+  fetchMusicList: func.isRequired,
+  children: object.isRequired
 }
 AppContainer.defaultProps = {}
 
-function mapStateToProps(state) {
-  return {
-    musicList: state.musicList
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actionCreators, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AppContainer)
+export default connect(
+  (dispatch) => bindActionCreators(actionCreators, dispatch)
+)(AppContainer)

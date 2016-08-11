@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import { withRouter, browserHistory } from 'react-router'
+import { browserHistory } from 'react-router'
 
 class ToolBar extends Component {
   constructor(props) {
@@ -42,10 +41,4 @@ ToolBar.propTypes = {
 }
 ToolBar.defaultProps = {}
 
-function mapStateToProps(state) {
-  return {
-    posts: state.articleSummary.paginator
-  }
-}
-
-export default connect(mapStateToProps)(withRouter(ToolBar))
+export default ToolBar

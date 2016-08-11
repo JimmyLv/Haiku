@@ -14,12 +14,11 @@ export const FETCH_ARTICLE_SUMMARY = 'FETCH_ARTICLE_SUMMARY'
 export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR'
 export const TOGGLE_CONTENT = 'TOGGLE_CONTENT'
 
-function shouldFetchArticle(state, id) {
-  if (state.article.id && state.article.id === id) {
-    return false
-  }
 
-  return true
+// TODO: refactoring to use dux modules, export default reducer but export as for action creators
+
+function shouldFetchArticle(state, id) {
+  return !(state.article.id && state.article.id === id)
 }
 
 function receiveArticle(content, id) {
@@ -92,7 +91,7 @@ export function fetchMusicList() {
     .catch(error => console.info('request error: ', error))
 }
 
-export function toggleSideBarAction() {
+export function toggleSideBar() {
   return {
     type: TOGGLE_SIDEBAR
   }

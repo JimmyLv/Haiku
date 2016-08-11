@@ -7,7 +7,7 @@ import { fetchArticleSummary } from '../redux/actions'
 import SideBar from '../components/Blog/SideBar'
 import './BlogContainer.less'
 
-class BlogPage extends Component {
+class BlogContainer extends Component {
   componentDidMount() {
     this.props.dispatch(fetchArticleSummary())
   }
@@ -36,13 +36,13 @@ class BlogPage extends Component {
   }
 }
 
-BlogPage.propTypes = {
+BlogContainer.propTypes = {
   categories: PropTypes.array.isRequired,
   showContent: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
   children: PropTypes.object.isRequired
 }
-BlogPage.defaultProps = {}
+BlogContainer.defaultProps = {}
 
 function mapStateToProps(state) {
   return {
@@ -51,4 +51,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(BlogPage)
+export default connect(mapStateToProps)(BlogContainer)

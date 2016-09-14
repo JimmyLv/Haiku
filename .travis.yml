@@ -24,6 +24,7 @@ after_script:
 cache:
   directories:
     - node_modules
+    - ~/.npm
 # deploy:
 #   provider: s3
 #   access_key_id: $S3_ACCESS_KEY_ID

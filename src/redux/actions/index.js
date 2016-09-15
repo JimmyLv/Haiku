@@ -1,4 +1,5 @@
 import 'whatwg-fetch'
+import fetchJsonp from 'fetch-jsonp'
 import { hideLoading, showLoading } from 'react-redux-loading-bar'
 
 export const GITHUB = {
@@ -58,7 +59,7 @@ export function fetchArticleIfNeeded(category, id) {
 }
 
 export function fetchArticleSummary() {
-  return dispatch => fetch('https://blog.jimmylv.info/api/index.json')
+  return dispatch => fetch('http://jimmylv.github.io/api/index.json')
     .then(res => {
       if (res.ok) {
         return res.json()
@@ -75,7 +76,7 @@ export function fetchArticleSummary() {
 }
 
 export function fetchMusicList() {
-  return dispatch => fetch('http://app.atime.me/music-api-server/?p=netease&t=playlist&i=389445274')
+  return dispatch => fetchJsonp('http://app.atime.me/music-api-server/?p=netease&t=playlist&i=389445274')
     .then(res => {
       if (res.ok) {
         return res.json()

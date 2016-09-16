@@ -7,5 +7,6 @@ bower_components/
 *.log
 
 _site/
+public/
 
 coverage/

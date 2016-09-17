@@ -4,7 +4,7 @@ import HomeHeader from '../components/Blog/HomeHeader'
 import PostPanel from '../components/Blog/PostPanel'
 import './BlogHomePage.less'
 
-class BlogHomePage extends Component {
+class BlogHome extends Component {
   componentDidMount() {
   }
 
@@ -24,10 +24,10 @@ class BlogHomePage extends Component {
   }
 }
 
-BlogHomePage.propTypes = {
+BlogHome.propTypes = {
   tags: PropTypes.array.isRequired,
   paginator: PropTypes.array.isRequired
 }
-BlogHomePage.defaultProps = {}
+BlogHome.defaultProps = {}
 
-export default BlogHomePage
+export default BlogHome

@@ -2,12 +2,7 @@ import 'whatwg-fetch'
 import fetchJsonp from 'fetch-jsonp'
 import { hideLoading, showLoading } from 'react-redux-loading-bar'
 
-export const GITHUB = {
-  user: 'JimmyLv',
-  repo: 'jimmy.lv',
-  folder: '_posts',
-  branch: 'master'
-}
+import { GITHUB } from '../../constants'
 
 const API_URL = `https://raw.githubusercontent.com/${GITHUB.user}/${GITHUB.repo}/${GITHUB.branch}/${GITHUB.folder}`
 

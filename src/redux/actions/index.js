@@ -1,5 +1,4 @@
 import 'whatwg-fetch'
-import fetchJsonp from 'fetch-jsonp'
 import { hideLoading, showLoading } from 'react-redux-loading-bar'
 
 import { GITHUB } from '../../constants'
@@ -47,7 +46,7 @@ export const fetchArticleSummary = () =>
     .catch(err => console.error('Failed to fetch article list: ', err))
 
 export const fetchMusicList = () =>
-  dispatch => fetchJsonp('http://app.atime.me/music-api-server/?p=netease&t=playlist&i=389445274')
+  dispatch => fetch('http://app.atime.me/music-api-server/?p=netease&t=playlist&i=389445274', { mode: 'no-cors' })
     .then(res => res.json())
     .then(json => dispatch({ type: FETCH_MUSIC, payload: json }))
     .catch(err => dispatch({ type: FETCH_MUSIC_ERROR, payload: err }))

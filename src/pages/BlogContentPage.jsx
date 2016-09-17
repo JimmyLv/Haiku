@@ -10,7 +10,20 @@ import SocialShare from '../components/Blog/SocialShare'
 import ContentParser from '../components/Blog/ContentParser'
 import './BlogContentPage.less'
 
-class BlogContent extends Component {
+@connect(
+  (state) => ({
+    ...state.article,
+    loadingBar: state.loadingBar
+  })
+)
+export default class BlogContent extends Component {
+  static propTypes = {
+    params: PropTypes.object.isRequired,
+    meta: PropTypes.object.isRequired,
+    content: PropTypes.string.isRequired,
+    dispatch: PropTypes.func.isRequired
+  }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -29,7 +42,6 @@ class BlogContent extends Component {
       this.props.dispatch(fetchArticleIfNeeded(category, id))
     }
   }
-
 
   render() {
     const { meta, content } = this.props
@@ -67,20 +79,3 @@ class BlogContent extends Component {
     )
   }
 }
-
-BlogContent.propTypes = {
-  params: PropTypes.object.isRequired,
-  meta: PropTypes.object.isRequired,
-  content: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired
-}
-BlogContent.defaultProps = {}
-
-function mapStateToProps(state) {
-  return {
-    ...state.article,
-    loadingBar: state.loadingBar
-  }
-}
-
-export default connect(mapStateToProps)(BlogContent)

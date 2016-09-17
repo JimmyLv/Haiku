@@ -13,13 +13,14 @@ class ToolBar extends Component {
   }
 
   randomPost() {
-    const posts = this.props.posts
+    const { posts, randomArticle } = this.props
     const post = posts[Math.floor(Math.random() * posts.length)]
     // this.props.router.push({
     //   pathname: '/note-blog',
     //   hash: `/${post.category}${post.url}`
     // })
     browserHistory.push(`#/note-blog/${post.category}${post.url}`)
+    randomArticle(post.category, post.url.split('/')[1])
   }
 
   render() {
@@ -35,6 +36,7 @@ class ToolBar extends Component {
 
 ToolBar.propTypes = {
   posts: PropTypes.array.isRequired,
+  randomArticle: PropTypes.func.isRequired,
   router: React.PropTypes.shape({
     push: React.PropTypes.func.isRequired
   }).isRequired

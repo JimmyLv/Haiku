@@ -59,7 +59,7 @@ const config = {
   plugins: [
     new HappyPack({
       cache: true,
-      loaders: ['babel?presets[]=react&presets[]=es2015&presets[]=stage-1&cacheDirectory'],
+      loaders: ['babel?cacheDirectory=true'],
       threads: 5
     }),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),

@@ -7,7 +7,20 @@ import { fetchArticleSummary } from '../redux/actions'
 import SideBar from '../components/Blog/SideBar'
 import './BlogContainer.less'
 
-class BlogContainer extends Component {
+@connect(
+  (state) => ({
+    ...state.articleSummary,
+    ...state.toggle
+  })
+)
+export default class BlogContainer extends Component {
+  static propTypes = {
+    categories: PropTypes.array.isRequired,
+    showContent: PropTypes.bool.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    children: PropTypes.object.isRequired
+  }
+
   componentDidMount() {
     this.props.dispatch(fetchArticleSummary())
   }
@@ -35,20 +48,3 @@ class BlogContainer extends Component {
     )
   }
 }
-
-BlogContainer.propTypes = {
-  categories: PropTypes.array.isRequired,
-  showContent: PropTypes.bool.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  children: PropTypes.object.isRequired
-}
-BlogContainer.defaultProps = {}
-
-function mapStateToProps(state) {
-  return {
-    ...state.articleSummary,
-    ...state.toggle
-  }
-}
-
-export default connect(mapStateToProps)(BlogContainer)

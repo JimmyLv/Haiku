@@ -65,3 +65,6 @@ export const toggleSideBar = () => ({
 export const toggleContent = () => ({
   type: TOGGLE_CONTENT
 })
+
+export const randomArticle = (category, id) => dispatch =>
+  dispatch(fetchArticle(category, id))

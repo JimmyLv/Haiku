@@ -5,7 +5,13 @@ import './AppContainer.less'
 import { HeaderContainer } from '../containers'
 import { fetchMusicList } from '../redux/actions'
 
-class AppContainer extends Component {
+@connect()
+export default class AppContainer extends Component {
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    children: PropTypes.object.isRequired
+  }
+
   componentDidMount() {
     this.props.dispatch(fetchMusicList())
   }
@@ -19,12 +25,3 @@ class AppContainer extends Component {
     )
   }
 }
-
-const { func, object } = PropTypes
-AppContainer.propTypes = {
-  dispatch: func.isRequired,
-  children: object.isRequired
-}
-AppContainer.defaultProps = {}
-
-export default connect()(AppContainer)

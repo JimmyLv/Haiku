@@ -4,16 +4,15 @@ import createLogger from 'redux-logger'
 import { hashHistory } from 'react-router'
 import { routerMiddleware, routerReducer } from 'react-router-redux'
 import { loadingBarMiddleware, loadingBarReducer } from 'react-redux-loading-bar'
+import throttle from 'lodash/throttle'
 
 // Apply the middleware to the store
 import * as reducers from '../reducers'
+import { loadState, saveState } from './localStorage'
 import DevTools from '../../containers/DevTools'
-// import { fetchArticleSummary, fetchMusicList } from '../actions'
 
 /*eslint-disable */
 function getPersistedState() {
-  // var stateString = localStorage.getItem('APP_STATE')
-  // if (!stateString) {
   return {
     musicList: [{
       "name": "Feeling U",
@@ -164,10 +163,6 @@ function getPersistedState() {
         }]
     }
   }
-  // }
-  // const state = JSON.parse(stateString)
-  // delete state.loadingBar // fixed loading bar always display issue
-  // return state
 }
 /*eslint-enable */
 
@@ -177,7 +172,7 @@ const store = createStore(
     routing: routerReducer,
     loadingBar: loadingBarReducer
   }),
-  getPersistedState(),
+  loadState() || getPersistedState(),
   compose(
     applyMiddleware(
       routerMiddleware(hashHistory),
@@ -189,7 +184,8 @@ const store = createStore(
   )
 )
 
-// store.dispatch(fetchArticleSummary())
-// store.dispatch(fetchMusicList())
+store.subscribe(throttle(() => {
+  saveState(store.getState())
+}, 1000))
 
 export default store

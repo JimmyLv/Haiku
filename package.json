@@ -52,7 +52,8 @@
     "to-markdown": "^3.0.0",
     "whatwg-fetch": "^1.0.0",
     "xmldom": "^0.1.22",
-    "xpath": "0.0.23"
+    "xpath": "0.0.23",
+    "node-uuid": "latest"
   },
   "optionalDependencies": {
     "fsevents": "^1.0.0"

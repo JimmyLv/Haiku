@@ -2,6 +2,7 @@ import React, { Component, PropTypes, } from 'react'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
 import ReactDisqus from 'react-disqus-thread'
+import { v4 } from 'node-uuid'
 
 import { fetchArticleSummary } from '../redux/actions'
 import SideBar from '../components/Blog/SideBar'
@@ -26,7 +27,11 @@ export default class BlogContainer extends Component {
   }
 
   handleNewComment(comment) {
-    console.log(comment.text)
+    // TODO: change to action
+    console.log({
+      text: comment.text,
+      id: v4()
+    })
   }
 
   render() {

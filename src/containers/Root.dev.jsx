@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
 import { Provider } from 'react-redux'
-import { Router } from 'react-router'
 
 import DevTools from './DevTools'
 import renderRoutes from '../routes'
@@ -8,9 +7,7 @@ import renderRoutes from '../routes'
 const Root = ({ store, history }) => (
   <Provider store={store}>
     <div>
-      <Router history={history}>
-        {renderRoutes()}
-      </Router>
+      {renderRoutes(history)}
       {!window.devToolsExtension ? <DevTools /> : null}
     </div>
   </Provider>

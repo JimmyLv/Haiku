@@ -14,8 +14,8 @@ function articleReducer(state = {}, action) {
   switch (action.type) {
     case FETCH_ARTICLE:
       return {
-        id: action.id,
-        ..._parseContent('---', action.content)
+        id: action.payload.id,
+        ..._parseContent('---', action.payload.content)
       }
     default:
       return state

@@ -5,7 +5,7 @@ const initialToggleState = {
   showContent: true
 }
 
-function articlesReducer(state = initialToggleState, action) {
+function toggleReducer(state = initialToggleState, action) {
   switch (action.type) {
     case TOGGLE_SIDEBAR:
       return { ...state, showSideBar: !state.showSideBar }
@@ -16,4 +16,4 @@ function articlesReducer(state = initialToggleState, action) {
   }
 }
 
-export default articlesReducer
+export default toggleReducer

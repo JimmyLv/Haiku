@@ -1,8 +1,7 @@
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { Header } from '../components'
-import * as actionCreators from '../redux/actions'
+import { toggleContent } from '../redux/actions'
 
 function mapStateToProps(state) {
   return {
@@ -12,7 +11,9 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actionCreators, dispatch)
+  return {
+    toggleContent: () => dispatch(toggleContent())
+  }
 }
 
 export default connect(

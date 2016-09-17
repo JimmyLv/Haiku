@@ -1,5 +1,5 @@
 {
   "src": "./public",
-  "dest": "qiniu:access_key=QiNiuAK&secret_key=QiNiuSK&bucket=jimmylv-blog&key_prefix=nobackend-react/",
+  "dest": "qiniu:access_key=QiNiuAK&secret_key=QiNiuSK&bucket=taiku&key_prefix=/",
   "debug_level": 1
 }

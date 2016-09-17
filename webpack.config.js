@@ -13,7 +13,7 @@ const isProd = process.env.NODE_ENV === 'production'
 const PATHS = {
   app: path.join(__dirname, 'src/index.jsx'),
   build: path.join(__dirname, 'public'),
-  publicPath: '//o7mw3gkkh.qnssl.com/nobackend-react/'
+  publicPath: '//odnk5k6v9.bkt.clouddn.com/'
 }
 
 const config = {

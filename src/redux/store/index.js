@@ -11,7 +11,7 @@ import DevTools from '../../containers/DevTools'
 // import { fetchArticleSummary, fetchMusicList } from '../actions'
 
 /*eslint-disable */
-function getInitialState() {
+function getPersistedState() {
   // var stateString = localStorage.getItem('APP_STATE')
   // if (!stateString) {
   return {
@@ -177,7 +177,7 @@ const store = createStore(
     routing: routerReducer,
     loadingBar: loadingBarReducer
   }),
-  getInitialState(),
+  getPersistedState(),
   compose(
     applyMiddleware(
       routerMiddleware(hashHistory),

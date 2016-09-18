@@ -15,7 +15,7 @@ function musicList(state = initialState, action) {
     case FETCH_MUSIC:
       return [...action.payload.songs]
     case FETCH_MUSIC_ERROR:
-      console.error('Failed to fetch music list!')
+      console.warn('Failed to fetch music list!')
       return state
     default:
       return state

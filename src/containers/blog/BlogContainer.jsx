@@ -19,6 +19,7 @@ export default class BlogContainer extends Component {
     categories: PropTypes.array.isRequired,
     showContent: PropTypes.bool.isRequired,
     dispatch: PropTypes.func.isRequired,
+    params: PropTypes.object.isRequired,
     children: PropTypes.object.isRequired
   }
 
@@ -35,11 +36,11 @@ export default class BlogContainer extends Component {
   }
 
   render() {
-    const { categories } = this.props
+    const { categories, params } = this.props
 
     return (
       <div className="row">
-        <SideBar categories={categories}/>
+        <SideBar selectedCategory={params.category || '思考'} categories={categories}/>
         <div className={classnames('col-md-8 col-xs-12 aside3', { 'm-hide': this.props.showContent })}>
           {React.cloneElement(this.props.children, { ...this.props })}
           <ReactDisqus

@@ -62,8 +62,5 @@ SideBar.propTypes = {
   selectedCategory: PropTypes.string.isRequired,
   categories: PropTypes.array.isRequired
 }
-SideBar.defaultProps = {
-  selectedCategory: '思考'
-}
 
 export default SideBar

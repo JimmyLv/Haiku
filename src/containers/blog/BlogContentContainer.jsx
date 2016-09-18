@@ -1,37 +1,13 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
 import LoadingBar from 'react-redux-loading-bar'
 
 import { GITHUB, SUB_TITLE } from '../../constants'
 
-import { fetchArticleIfNeeded } from '../../redux/actions'
-import MusicBox from '../../components/Blog/MusicBox'
-import BookInfo from '../../components/Blog/BookInfo'
+import Article from '../../components/Blog/Article'
 import SocialShare from '../../components/Blog/SocialShare'
-import ContentParser from '../../components/Blog/ContentParser'
-import './BlogContentContainer.less'
-
-const renderArticle = (meta, content, editUrl, filename) => (
-  <article className="col-md-12 aside3-article">
-    <div className="article-header">
-      <h1 id="#identifier">{meta.title}</h1>
-      <div className="article-meta">
-        <span className="words">{content.length} words</span>
-        <a className="content-edit" href={editUrl} target="_blank">{filename}</a>
-      </div>
-      {meta.music ? <MusicBox musicUrl={`http://music.163.com/outchain/player?type=2&id=${meta.music}&auto=0&height=66`}/> : ''}
-    </div>
-    <div className="article-content">
-      {meta.layout === 'book' ? meta.books.map((book, index) => <BookInfo key={index} book={book}/>) :
-        <ContentParser layout={meta.layout} content={content}/>
-      }
-    </div>
-    <div className="article-tags">
-      {meta.tags.map((tag, index) => <Link key={index} to={`/pages/tags/${tag}`}>{tag}</Link>)}
-    </div>
-  </article>
-)
+import { fetchArticleIfNeeded } from '../../redux/actions'
+import '../../components/Blog/Article.less'
 
 @connect(
   (state) => ({
@@ -46,13 +22,6 @@ export default class BlogContentContainer extends Component {
     meta: PropTypes.object.isRequired,
     content: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired
-  }
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      auto: 0
-    }
   }
 
   componentDidMount() {
@@ -78,7 +47,7 @@ export default class BlogContentContainer extends Component {
     return (
       <div className="yue">
         <LoadingBar />
-        {renderArticle(meta, content, editUrl, filename)}
+        <Article {...{ meta, content, editUrl, filename }}/>
         <hr/>
         <SocialShare meta={meta}/>
       </div>

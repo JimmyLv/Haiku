@@ -8,6 +8,7 @@ import { fetchMusicList } from '../redux/actions'
 @connect(
   (state) => ({
     ...state,
+    posts: state.articleSummary.paginator,
     pathname: state.routing.locationBeforeTransitions.pathname
   })
 )
@@ -15,6 +16,7 @@ export default class AppContainer extends Component {
   static propTypes = {
     musicList: PropTypes.array.isRequired,
     pathname: PropTypes.string.isRequired,
+    posts: PropTypes.array.isRequired,
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.object.isRequired
   }
@@ -24,10 +26,10 @@ export default class AppContainer extends Component {
   }
 
   render() {
-    const { musicList, pathname, dispatch } = this.props
+    const { musicList, pathname, posts, dispatch } = this.props
     return (
       <div className="main-app">
-        <Header {...{ musicList, pathname, dispatch }}/>
+        <Header {...{ musicList, pathname, posts, dispatch }}/>
         {this.props.children}
       </div>
     )

@@ -1,8 +1,8 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import DevTools from './containers/DevTools'
-import Root from '../src/containers/Root.dev'
+import DevTools from './config/DevTools'
+import Root from './config/Root.dev'
 
 describe('Root component', () => {
   it('should render without problems', () => {

@@ -1,9 +1,8 @@
 import React from 'react'
 import { Router, Route, IndexRoute, IndexRedirect } from 'react-router'
 
+import { AppContainer } from './containers'
 import { BlogContainer, BlogHomeContainer, BlogContentContainer } from './containers/blog/'
-
-import AppContainer from './containers/AppContainer'
 
 import AppListPage from './pages/AppListPage'
 import PhotoPage from './pages/PhotoPage'

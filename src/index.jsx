@@ -8,7 +8,7 @@ import '../node_modules/font-awesome/css/font-awesome.css'
 import 'bootstrap.css'
 import 'yue.css'
 
-import Root from './containers/Root'
+import Root from './config/Root'
 import store from './redux/store/'
 
 const history = syncHistoryWithStore(hashHistory, store)

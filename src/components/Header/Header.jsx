@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react'
 import './Header.less'
 import Navigation from './Navigation'
 import MusicPlayer from './MusicPlayer'
-import { ToolBarContainer } from '../../containers'
+import ToolBar from './ToolBar'
 import { toggleContent } from '../../redux/actions'
 
 const menuList = [
@@ -14,7 +14,7 @@ const menuList = [
   { name: 'Zhihu', link: '/pages/zhihu' }
 ]
 
-const Header = ({ musicList, pathname, dispatch }) => (
+const Header = ({ musicList, pathname, posts, dispatch }) => (
   <header id="header">
     <div className="logo">
       <span onClick={() => dispatch(toggleContent())} title="立青作品">
@@ -23,13 +23,14 @@ const Header = ({ musicList, pathname, dispatch }) => (
     </div>
     <Navigation menuList={menuList} selectedUrl={pathname}/>
     <MusicPlayer songs={musicList}/>
-    <ToolBarContainer />
+    <ToolBar posts={posts} dispatch={dispatch} />
   </header>
 )
 
 Header.propTypes = {
   musicList: PropTypes.array.isRequired,
   pathname: PropTypes.string.isRequired,
+  posts: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired
 }
 Header.defaultProps = {}

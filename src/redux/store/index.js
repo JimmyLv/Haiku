@@ -9,7 +9,7 @@ import throttle from 'lodash/throttle'
 // Apply the middleware to the store
 import * as reducers from '../reducers'
 import { loadState, saveState } from './localStorage'
-import DevTools from '../../containers/DevTools'
+import configDevTools from '../../config/DevTools'
 
 /*eslint-disable */
 function getPersistedState() {
@@ -181,7 +181,7 @@ const store = window.store = createStore(
       thunkMiddleware,
       createLogger()
     ),
-    window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument()
+    configDevTools()
   )
 )
 

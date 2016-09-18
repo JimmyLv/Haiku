@@ -1,6 +1,6 @@
-# Haiku
+# Haiku | 俳句（三行短诗）| Hut, hut, hut: First down and haiku!
 
-> A powerful rich interactive web application by using nobackend tech stack.
+> **A powerful rich interactive platform for personal creativity presentation.**
 
 [![Build Status](https://travis-ci.org/JimmyLv/Haiku.svg?branch=gh-pages)](https://travis-ci.org/JimmyLv/Haiku)
 [![codecov](https://codecov.io/gh/JimmyLv/Haiku/branch/gh-pages/graph/badge.svg)](https://codecov.io/gh/JimmyLv/Haiku)

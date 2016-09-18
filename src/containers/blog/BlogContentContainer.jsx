@@ -3,14 +3,14 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import LoadingBar from 'react-redux-loading-bar'
 
-import { GITHUB, SUB_TITLE } from '../constants'
+import { GITHUB, SUB_TITLE } from '../../constants'
 
-import { fetchArticleIfNeeded } from '../redux/actions'
-import MusicBox from '../components/Blog/MusicBox'
-import BookInfo from '../components/Blog/BookInfo'
-import SocialShare from '../components/Blog/SocialShare'
-import ContentParser from '../components/Blog/ContentParser'
-import './BlogContentPage.less'
+import { fetchArticleIfNeeded } from '../../redux/actions'
+import MusicBox from '../../components/Blog/MusicBox'
+import BookInfo from '../../components/Blog/BookInfo'
+import SocialShare from '../../components/Blog/SocialShare'
+import ContentParser from '../../components/Blog/ContentParser'
+import './BlogContentContainer.less'
 
 const renderArticle = (meta, content, editUrl, filename) => (
   <article className="col-md-12 aside3-article">
@@ -35,7 +35,8 @@ const renderArticle = (meta, content, editUrl, filename) => (
 
 @connect(
   (state) => ({
-    ...state.article,
+    meta: state.article.meta,
+    content: state.article.content,
     loadingBar: state.loadingBar
   })
 )

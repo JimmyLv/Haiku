@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import DevTools from '../src/containers/DevTools'
+import DevTools from './containers/DevTools'
 import Root from '../src/containers/Root.dev'
 
 describe('Root component', () => {

@@ -4,14 +4,14 @@ import classnames from 'classnames'
 import ReactDisqus from 'react-disqus-thread'
 import { v4 } from 'node-uuid'
 
-import { fetchArticleSummary } from '../redux/actions'
-import SideBar from '../components/Blog/SideBar'
+import { fetchArticleSummary } from '../../redux/actions'
+import SideBar from '../../components/Blog/SideBar'
 import './BlogContainer.less'
 
 @connect(
   (state) => ({
-    ...state.articleSummary,
-    ...state.toggle
+    categories: state.articleSummary.categories,
+    showContent: state.toggle.showContent
   })
 )
 export default class BlogContainer extends Component {

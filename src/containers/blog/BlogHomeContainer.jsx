@@ -1,10 +1,22 @@
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-import HomeHeader from '../components/Blog/HomeHeader'
-import PostPanel from '../components/Blog/PostPanel'
-import './BlogHomePage.less'
+import HomeHeader from '../../components/Blog/HomeHeader'
+import PostPanel from '../../components/Blog/PostPanel'
+import './BlogHomeContainer.less'
 
-class BlogHome extends Component {
+@connect(
+  (state) => ({
+    tags: state.articleSummary.tags,
+    paginator: state.articleSummary.paginator,
+  })
+)
+export default class BlogHomePage extends Component {
+  static propTypes = {
+    tags: PropTypes.array.isRequired,
+    paginator: PropTypes.array.isRequired
+  }
+
   componentDidMount() {
   }
 
@@ -23,11 +35,3 @@ class BlogHome extends Component {
     )
   }
 }
-
-BlogHome.propTypes = {
-  tags: PropTypes.array.isRequired,
-  paginator: PropTypes.array.isRequired
-}
-BlogHome.defaultProps = {}
-
-export default BlogHome

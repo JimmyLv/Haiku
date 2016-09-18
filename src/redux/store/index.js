@@ -22,6 +22,7 @@ function getPersistedState() {
       "provider": "http://music.163.com/"
     }],
     article: {
+      "id": "/2011-01-01-hello-world/",
       "meta": {
         "title": "title",
         "layout": "post",
@@ -166,7 +167,7 @@ function getPersistedState() {
 }
 /*eslint-enable */
 
-const store = createStore(
+const store = window.store = createStore(
   combineReducers({
     ...reducers,
     routing: routerReducer,

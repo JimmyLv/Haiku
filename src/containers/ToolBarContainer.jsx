@@ -1,26 +1,17 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
 
 import { ToolBar } from '../components'
-import { randomArticle } from '../redux/actions'
 
 @connect(
   (state) => ({
     posts: state.articleSummary.paginator
-  }),
-  (dispatch) => ({
-    randomArticle: (category, id) => dispatch(randomArticle(category, id))
   })
 )
-@withRouter
 export default class ToolBarContainer extends Component {
   static propTypes = {
     posts: PropTypes.array.isRequired,
-    randomArticle: PropTypes.func.isRequired,
-    router: React.PropTypes.shape({
-      push: React.PropTypes.func.isRequired
-    }).isRequired
+    dispatch: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -29,12 +20,9 @@ export default class ToolBarContainer extends Component {
   }
 
   render() {
+    const { posts, dispatch } = this.props
     return (
-      <ToolBar
-        posts={this.props.posts}
-        router={this.props.router}
-        randomArticle={this.props.randomArticle}
-      />
+      <ToolBar {...{ posts, dispatch }} />
     )
   }
 }

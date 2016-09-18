@@ -40,7 +40,7 @@ const renderArticle = (meta, content, editUrl, filename) => (
     loadingBar: state.loadingBar
   })
 )
-export default class BlogContent extends Component {
+export default class BlogContentContainer extends Component {
   static propTypes = {
     params: PropTypes.object.isRequired,
     meta: PropTypes.object.isRequired,

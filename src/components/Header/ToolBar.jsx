@@ -1,7 +1,18 @@
 import React, { Component, PropTypes } from 'react'
-import { browserHistory } from 'react-router'
+import { browserHistory, withRouter } from 'react-router'
 
-class ToolBar extends Component {
+import { randomArticle } from '../../redux/actions'
+
+@withRouter
+export default class ToolBar extends Component {
+  static propTypes = {
+    posts: PropTypes.array.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    router: React.PropTypes.shape({
+      push: React.PropTypes.func.isRequired
+    }).isRequired
+  }
+
   constructor(props) {
     super(props)
     this.clearSearch = this.clearSearch.bind(this)
@@ -13,14 +24,11 @@ class ToolBar extends Component {
   }
 
   randomPost() {
-    const { posts, randomArticle } = this.props
+    const { posts, dispatch } = this.props
     const post = posts[Math.floor(Math.random() * posts.length)]
-    // this.props.router.push({
-    //   pathname: '/note-blog',
-    //   hash: `/${post.category}${post.url}`
-    // })
+    // this.props.router.push(`/note-blog/${post.category}${post.url}`)
     browserHistory.push(`#/note-blog/${post.category}${post.url}`)
-    randomArticle(post.category, post.url.split('/')[1])
+    dispatch(randomArticle(post.category, post.url.split('/')[1]))
   }
 
   render() {
@@ -33,14 +41,3 @@ class ToolBar extends Component {
     )
   }
 }
-
-ToolBar.propTypes = {
-  posts: PropTypes.array.isRequired,
-  randomArticle: PropTypes.func.isRequired,
-  router: React.PropTypes.shape({
-    push: React.PropTypes.func.isRequired
-  }).isRequired
-}
-ToolBar.defaultProps = {}
-
-export default ToolBar

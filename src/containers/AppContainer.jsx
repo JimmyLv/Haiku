@@ -2,12 +2,19 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import './AppContainer.less'
-import { HeaderContainer } from '../containers'
+import Header from '../components/Header/Header'
 import { fetchMusicList } from '../redux/actions'
 
-@connect()
+@connect(
+  (state) => ({
+    ...state,
+    pathname: state.routing.locationBeforeTransitions.pathname
+  })
+)
 export default class AppContainer extends Component {
   static propTypes = {
+    musicList: PropTypes.array.isRequired,
+    pathname: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.object.isRequired
   }
@@ -17,9 +24,10 @@ export default class AppContainer extends Component {
   }
 
   render() {
+    const { musicList, pathname, dispatch } = this.props
     return (
       <div className="main-app">
-        <HeaderContainer />
+        <Header {...{ musicList, pathname, dispatch }}/>
         {this.props.children}
       </div>
     )

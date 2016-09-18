@@ -1,5 +1,4 @@
 export AppContainer from './AppContainer'
 export ToolBarContainer from './ToolBarContainer'
-export HeaderContainer from './HeaderContainer'
 export Root from './Root'
 export DevTools from './DevTools'

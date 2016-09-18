@@ -20,11 +20,11 @@ const shouldFetchArticle =
   (state, id) => !(state.article.id && state.article.id === id)
 
 const receiveArticle = (content, id) => dispatch => {
-  dispatch(hideLoading())
   dispatch({
     type: FETCH_ARTICLE,
     payload: { id, content }
   })
+  dispatch(hideLoading())
 }
 
 const fetchArticle = (category, id) => dispatch => {

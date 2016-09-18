@@ -1,5 +1,5 @@
 {
-  "name": "TAiKu",
+  "name": "Haiku",
   "version": "1.0.0",
   "description": "A powerful rich interactive web application by using nobackend tech stack.",
   "main": "./src/index.jsx",
@@ -17,9 +17,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JimmyLv/TAiKu"
+    "url": "git+https://github.com/JimmyLv/Haiku"
   },
-  "homepage": "http://TAiKu/",
+  "homepage": "http://haiku.jimmylv.info/",
   "author": "Jimmy Lv",
   "license": "ISC",
   "dependencies": {

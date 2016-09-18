@@ -12,11 +12,11 @@ author:
   zhihu: http://www.zhihu.com/people/JimmyLv
 
 project:
-  title: TAiKu
+  title: Haiku
   subtitle: 最美博客
   description: A powerful rich interactive web application by using nobackend tech stack.
-  repository: https://github.com/JimmyLv/TAiKu
-  website: http://taiku.jimmylv.info
+  repository: https://github.com/JimmyLv/Haiku
+  website: http://haiku.jimmylv.info
 
 # github endpoint
 github:

@@ -46,7 +46,7 @@ export default class BlogContainer extends Component {
           <ReactDisqus
             shortname="nobackend-website"
             identifier="nobackend-website"
-            title="TAiKu"
+            title="Haiku"
             onNewComment={this.handleNewComment.bind(this)}
           />
         </div>

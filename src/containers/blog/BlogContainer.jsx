@@ -1,4 +1,4 @@
-import React, { Component, PropTypes, } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
 import ReactDisqus from 'react-disqus-thread'
@@ -8,6 +8,14 @@ import { fetchArticleSummary } from '../../redux/actions'
 import SideBar from '../../components/Blog/SideBar'
 import './BlogContainer.less'
 
+type Props = {
+  categories: Array<Object>,
+  showContent: boolean,
+  dispatch: (actionCreator: Function) => void,
+  params: Object,
+  children: Object
+}
+
 @connect(
   (state) => ({
     categories: state.articleSummary.categories,
@@ -15,17 +23,11 @@ import './BlogContainer.less'
   })
 )
 export default class BlogContainer extends Component {
-  static propTypes = {
-    categories: PropTypes.array.isRequired,
-    showContent: PropTypes.bool.isRequired,
-    dispatch: PropTypes.func.isRequired,
-    params: PropTypes.object.isRequired,
-    children: PropTypes.object.isRequired
-  }
-
   componentDidMount() {
     this.props.dispatch(fetchArticleSummary())
   }
+
+  props: Props
 
   handleNewComment(comment) {
     // TODO: change to action

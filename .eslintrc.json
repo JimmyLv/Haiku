@@ -8,7 +8,8 @@
   "installedESLint": true,
   "plugins": [
     "react",
-    "flowtype"
+    "flowtype",
+    "immutable"
   ],
   "settings": {
     "import/resolver": {
@@ -34,10 +35,15 @@
     "quote-props": 0,
     "consistent-return": 0,
     "no-trailing-spaces": 0,
-    // react
 
+    // react
     "react/jsx-space-before-closing": 0,
-    "react/jsx-no-bind": 0
+    "react/jsx-no-bind": 0,
+
+    //immutable
+    "immutable/no-let": 2
+//    "immutable/no-this": 2,
+//    "immutable/no-mutation": 2
 
     // flowtype
 

@@ -8,7 +8,7 @@ import { fetchArticleSummary } from '../../redux/actions'
 import SideBar from '../../components/Blog/SideBar'
 import './BlogContainer.less'
 
-type Props = {
+type PropsType = {
   categories: Array<Object>,
   showContent: boolean,
   dispatch: (actionCreator: Function) => void,
@@ -27,7 +27,7 @@ export default class BlogContainer extends Component {
     this.props.dispatch(fetchArticleSummary())
   }
 
-  props: Props
+  props: PropsType
 
   handleNewComment(comment) {
     // TODO: change to action

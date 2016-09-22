@@ -9,16 +9,6 @@ declare type Music = {
   provider: string;
 }
 
-// refer: https://github.com/acdlite/flux-standard-action
-declare type MusicAction = {
-  type: string;
-  payload: {
-    songs: Array<Music>
-  };
-  error: ?boolean;
-  meta: ?any;
-}
-
 declare type Article = {
   id: string;
   meta: {
@@ -27,15 +17,6 @@ declare type Article = {
     tags: Array<string>;
   },
   content: string;
-}
-
-declare type ArticleAction = {
-  type: string;
-  payload: {
-    id: string,
-    content: string,
-    err: ?Error
-  }
 }
 
 declare type Category = {
@@ -54,9 +35,4 @@ declare type ArticleSummary = {
   tags: Array<Tag>;
   paginator: Array<Article>;
   err: ?Error;
-}
-
-declare type ArticlesAction = {
-  type: string;
-  payload: ArticleSummary;
 }

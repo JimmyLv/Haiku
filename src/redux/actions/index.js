@@ -5,14 +5,16 @@ import { GITHUB } from '../../constants'
 
 const API_URL = `https://raw.githubusercontent.com/${GITHUB.user}/${GITHUB.repo}/${GITHUB.branch}/${GITHUB.folder}`
 
-export const FETCH_MUSIC = 'FETCH_MUSIC'
-export const FETCH_MUSIC_ERROR = 'FETCH_MUSIC_ERROR'
-export const FETCH_ARTICLE = 'FETCH_ARTICLE'
-export const FETCH_ARTICLE_ERROR = 'FETCH_ARTICLE_ERROR'
-export const FETCH_ARTICLE_SUMMARY = 'FETCH_ARTICLE_SUMMARY'
-export const FETCH_ARTICLE_SUMMARY_ERROR = 'FETCH_ARTICLE_SUMMARY_ERROR'
-export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR'
-export const TOGGLE_CONTENT = 'TOGGLE_CONTENT'
+// TODO: move to src/constants/actionTypes.js
+
+export const FETCH_MUSIC: string = 'FETCH_MUSIC'
+export const FETCH_MUSIC_ERROR: string = 'FETCH_MUSIC_ERROR'
+export const FETCH_ARTICLE: string = 'FETCH_ARTICLE'
+export const FETCH_ARTICLE_ERROR: string = 'FETCH_ARTICLE_ERROR'
+export const FETCH_ARTICLE_SUMMARY: string = 'FETCH_ARTICLE_SUMMARY'
+export const FETCH_ARTICLE_SUMMARY_ERROR: string = 'FETCH_ARTICLE_SUMMARY_ERROR'
+export const TOGGLE_SIDEBAR: string = 'TOGGLE_SIDEBAR'
+export const TOGGLE_CONTENT: string = 'TOGGLE_CONTENT'
 
 // TODO: refactoring to use dux modules, export default reducer but export as for action creators
 

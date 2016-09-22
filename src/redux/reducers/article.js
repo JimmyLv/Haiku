@@ -1,8 +1,20 @@
+// @flow
+
 import jsyaml from 'js-yaml'
 
 import { FETCH_ARTICLE, FETCH_ARTICLE_ERROR } from '../actions'
 
-function articleReducer(state = {}, action) {
+const initialArticle = {
+  id: '/2011-11-11-hello-world/',
+  meta: {
+    title: 'Hello World!',
+    layout: 'post',
+    tags: ['hello', 'world']
+  },
+  content: 'Hell0 W0rld!'
+}
+
+function articleReducer(state: Article = initialArticle, action: ArticleAction): Article {
   switch (action.type) {
     case FETCH_ARTICLE: {
       const result = action.payload.content.split('---')

@@ -1,7 +1,8 @@
 [ignore]
-
-.*node_modules.*
+.*node_modules/fbjs.*
 
 [libs]
+src/decls
 
-decls
+[options]
+module.ignore_non_literal_requires=true

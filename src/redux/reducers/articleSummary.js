@@ -1,6 +1,26 @@
+// @flow
+
 import { FETCH_ARTICLE_SUMMARY, FETCH_ARTICLE_SUMMARY_ERROR } from '../actions'
 
-function articleSummaryReducer(state = {}, action) {
+const initialArticle = {
+  id: '/2011-11-11-hello-world/',
+  meta: {
+    title: 'Hello World!',
+    layout: 'post',
+    tags: ['hello', 'world']
+  },
+  content: 'Hell0 W0rld!'
+}
+
+const initialArticleSummary = {
+  categories: [{ name: '思考', posts: [initialArticle] }],
+  tags: [{ name: 'hello', size: 1, posts: [initialArticle] }],
+  paginator: [initialArticle],
+  err: null
+}
+
+function articleSummaryReducer(state: ArticleSummary = initialArticleSummary,
+                               action: ArticlesAction) {
   switch (action.type) {
     case FETCH_ARTICLE_SUMMARY:
       return { ...action.payload }

@@ -21,8 +21,7 @@ const initialArticle = {
 const initialArticleSummary = {
   categories: [{ name: '思考', posts: [initialArticle] }],
   tags: [{ name: 'hello', size: 1, posts: [initialArticle] }],
-  paginator: [initialArticle],
-  err: null
+  paginator: [initialArticle]
 }
 
 function articleSummaryReducer(state: ArticleSummary = initialArticleSummary,

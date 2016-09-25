@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import ReactDisqus from 'react-disqus-thread'
 import { v4 } from 'node-uuid'
 
-import { fetchArticleSummary } from '../../ducks/articleSummary'
+import { REQUEST_ARTICLE_SUMMARY } from '../../constants/actionTypes'
 import SideBar from '../../components/Blog/SideBar'
 import './BlogContainer.less'
 
@@ -24,11 +24,11 @@ type PropsType = {
 )
 export default class BlogContainer extends Component {
   componentDidMount() {
-    this.props.dispatch(fetchArticleSummary())
+    this.props.dispatch({ type: REQUEST_ARTICLE_SUMMARY })
   }
-
+  
   props: PropsType
-
+  
   handleNewComment(comment) {
     // TODO: change to action
     console.log({
@@ -36,10 +36,10 @@ export default class BlogContainer extends Component {
       id: v4()
     })
   }
-
+  
   render() {
     const { categories, params } = this.props
-
+    
     return (
       <div className="row">
         <SideBar selectedCategory={params.category || '思考'} categories={categories}/>

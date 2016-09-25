@@ -1,5 +1,6 @@
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux'
 import thunkMiddleware from 'redux-thunk'
+import createSagaMiddleware from 'redux-saga'
 import createLogger from 'redux-logger'
 import { hashHistory } from 'react-router'
 import { routerMiddleware, routerReducer } from 'react-router-redux'
@@ -8,8 +9,11 @@ import throttle from 'lodash/throttle'
 
 // Apply the middleware to the store
 import * as reducers from '../ducks'
+import mySaga from '../ducks/sagas'
 import { loadState, saveState } from './localStorage'
 import configDevTools from '../config/DevTools'
+
+const sagaMiddleware = createSagaMiddleware()
 
 const store = window.store = createStore(
   combineReducers({
@@ -23,11 +27,14 @@ const store = window.store = createStore(
       routerMiddleware(hashHistory),
       loadingBarMiddleware(),
       thunkMiddleware,
+      sagaMiddleware,
       createLogger()
     ),
     configDevTools()
   )
 )
+
+sagaMiddleware.run(mySaga)
 
 store.subscribe(throttle(() => {
   saveState(store.getState())

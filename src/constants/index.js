@@ -12,6 +12,8 @@ export const GITHUB = {
 
 export const BASE_URL = `${GITHUB.host}/${GITHUB.user}/${GITHUB.repo}/${GITHUB.branch}`
 
+export const API_URL = `https://raw.githubusercontent.com/${GITHUB.user}/${GITHUB.repo}/${GITHUB.branch}/${GITHUB.folder}`
+
 export async function getConfig() {
   try {
     const yaml = await (await fetch(`${BASE_URL}/_config.yml`)).text()

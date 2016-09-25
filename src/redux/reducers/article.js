@@ -1,9 +1,41 @@
 // @flow
 
 import jsyaml from 'js-yaml'
-
-import { FETCH_ARTICLE, FETCH_ARTICLE_ERROR } from '../actions'
 import { ArticleType } from '../flow/types.x'
+import { API_URL } from '../../constants/'
+
+import { hideLoading, showLoading } from 'react-redux-loading-bar'
+
+const FETCH_ARTICLE: string = 'FETCH_ARTICLE'
+const FETCH_ARTICLE_ERROR: string = 'FETCH_ARTICLE_ERROR'
+
+const shouldFetchArticle =
+  (state, id) => !(state.article.id && state.article.id === id)
+
+const receiveArticle = (content, id) => dispatch => {
+  dispatch({
+    type: FETCH_ARTICLE,
+    payload: { id, content }
+  })
+  dispatch(hideLoading())
+}
+
+const fetchArticle = (category, id) => dispatch => {
+  dispatch(showLoading())
+  return fetch(`${API_URL}/${category}/${id}.md`)
+    .then(res => res.text())
+    .then(content => dispatch(receiveArticle(content, id)))
+    .catch(err => dispatch({ type: FETCH_ARTICLE_ERROR, payload: err }))
+}
+
+export const fetchArticleIfNeeded = (category, id) => (dispatch, getState) => {
+  if (shouldFetchArticle(getState(), id)) {
+    return dispatch(fetchArticle(category, id))
+  }
+}
+
+export const randomArticle = (category, id) => dispatch =>
+  dispatch(fetchArticle(category, id))
 
 const initialArticle = {
   id: '/2011-11-11-hello-world/',

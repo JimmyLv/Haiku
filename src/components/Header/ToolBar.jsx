@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { browserHistory, withRouter } from 'react-router'
 
-import { randomArticle } from '../../ducks/article'
+import { fetchArticle } from '../../ducks/article'
 
 @withRouter
 export default class ToolBar extends Component {
@@ -28,7 +28,7 @@ export default class ToolBar extends Component {
     const post = posts[Math.floor(Math.random() * posts.length)]
     // this.props.router.push(`/note-blog/${post.category}${post.url}`)
     browserHistory.push(`#/note-blog/${post.category}${post.url}`)
-    dispatch(randomArticle(post.category, post.url.split('/')[1]))
+    dispatch(fetchArticle(post.category, post.url.split('/')[1]))
   }
 
   render() {

@@ -1,28 +1,37 @@
 // @flow
-/* eslint no-undef: 0 */
 
-declare type Music = {
+export type Article = {
+  id: string;
+  meta: {
+    title: string;
+    layout: string;
+    tags: Array<string>;
+  },
+  content: string;
+}
+
+export type Music = {
   name: string;
   url: string;
-  lrc_url: ?string;
+  lrc_url?: string;
   artists: string;
   provider: string;
 }
 
-declare type Category = {
+export type Category = {
   name: string;
   posts: Array<Article>;
 }
 
-declare type Tag = {
+export type Tag = {
   name: string;
   size: number;
   posts: Array<Article>;
 }
 
-declare type ArticleSummary = {
+export type ArticleSummary = {
   categories: Array<Category>;
   tags: Array<Tag>;
   paginator: Array<Article>;
-  err: ?Error;
+  err?: Error;
 }

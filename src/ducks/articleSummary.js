@@ -1,12 +1,15 @@
 // @flow
 
 import { FETCH_ARTICLE_SUMMARY, FETCH_ARTICLE_SUMMARY_ERROR } from '../constants/actionTypes'
+import type { ArticleSummary } from '../flowtypes/stateTypes'
+import type { ArticlesAction } from '../flowtypes/actionTypes'
 
-export const fetchArticleSummary = () =>
-  dispatch => fetch('https://jimmylv.github.io/api/index.json')
-    .then(res => res.json())
-    .then(json => dispatch({ type: FETCH_ARTICLE_SUMMARY, payload: json }))
-    .catch(err => dispatch({ type: FETCH_ARTICLE_SUMMARY_ERROR, payload: new Error(err.message) }))
+export const fetchArticleSummary =
+  () => (dispatch: Function) =>
+    fetch('https://jimmylv.github.io/api/index.json')
+      .then(res => res.json())
+      .then(json => dispatch({ type: FETCH_ARTICLE_SUMMARY, payload: json }))
+      .catch(err => dispatch({ type: FETCH_ARTICLE_SUMMARY_ERROR, payload: new Error(err.message) }))
 
 const initialArticle = {
   id: '/2011-11-11-hello-world/',
@@ -27,7 +30,7 @@ const initialArticleSummary = {
 function articleSummaryReducer(state: ArticleSummary = initialArticleSummary,
                                action: ArticlesAction) {
   const { type, payload } = action
-
+  
   switch (type) {
     case FETCH_ARTICLE_SUMMARY:
       return { ...payload }

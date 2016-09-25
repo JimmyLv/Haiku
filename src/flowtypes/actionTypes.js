@@ -1,26 +1,27 @@
 // @flow
-/* eslint no-undef: 0 */
+
+import type { Music, ArticleSummary } from './stateTypes'
 
 // refer: https://github.com/acdlite/flux-standard-action
-declare type MusicAction = {
+export type MusicAction = {
   type: string;
   payload: {
     songs: Array<Music>
   };
-  error: ?boolean;
-  meta: ?any;
+  error?: boolean;
+  meta?: any;
 }
 
-declare type ArticleAction = {
+export type ArticleAction = {
   type: string;
   payload: {
     id: string,
     content: string,
-    err: ?Error
+    err?: Error
   }
 }
 
-declare type ArticlesAction = {
+export type ArticlesAction = {
   type: string;
   payload: ArticleSummary;
 }

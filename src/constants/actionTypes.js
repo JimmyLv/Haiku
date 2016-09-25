@@ -1,3 +1,5 @@
+// @flow
+
 export const TOGGLE_SIDEBAR: string = 'TOGGLE_SIDEBAR'
 export const TOGGLE_CONTENT: string = 'TOGGLE_CONTENT'
 

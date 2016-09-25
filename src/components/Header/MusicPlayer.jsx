@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 
 import sample from 'lodash/sample'
-// import without from 'lodash/without'
+import without from 'lodash/without'
 
 import './Player.less'
 import ReactPlayer from 'react-player'
@@ -37,8 +37,8 @@ class MusicPlayer extends Component {
   }
 
   shuffle() {
-    // const selectedMusic = sample(without(this.props.songs, this.state.selectedMusic))
-    const selectedMusic = sample(this.props.songs)
+    const selectedMusic = sample(without(this.props.songs, this.state.selectedMusic))
+    // const selectedMusic = sample(this.props.songs)
     this.setState({
       selectedMusic,
       playing: true,

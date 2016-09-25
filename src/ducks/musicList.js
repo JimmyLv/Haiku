@@ -1,14 +1,24 @@
 // @flow
 
+import fetchJsonp from 'fetch-jsonp'
 import { FETCH_MUSIC, FETCH_MUSIC_ERROR } from '../constants/actionTypes'
 import type { Music } from '../flowtypes/stateTypes'
 import type { MusicAction } from '../flowtypes/actionTypes'
 
 export const fetchMusicList =
   () => (dispatch: Function) =>
-    fetch('http://app.atime.me/music-api-server/?p=netease&t=playlist&i=389445274', { mode: 'no-cors' })
+    fetchJsonp('https://api.lostg.com/music/163/collections/429176788')
       .then(res => res.json())
-      .then(json => dispatch({ type: FETCH_MUSIC, payload: { songs: json.songs } }))
+      .then(json => dispatch({
+        type: FETCH_MUSIC,
+        payload: {
+          songs: json.map(song => ({
+            name: song.title,
+            url: song.location,
+            artists: song.singer
+          }))
+        }
+      }))
       .catch(err => dispatch({ type: FETCH_MUSIC_ERROR, payload: new Error(err.message) }))
 
 const initialMusic = [{
@@ -20,7 +30,7 @@ const initialMusic = [{
 }]
 
 function musicListReducer(state: Array<Music> = initialMusic,
-                   action: MusicAction): Array<Music> {
+                          action: MusicAction): Array<Music> {
   const { type, payload } = action
   
   switch (type) {

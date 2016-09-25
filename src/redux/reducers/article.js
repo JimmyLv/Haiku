@@ -15,9 +15,10 @@ const initialArticle = {
   content: 'Hell0 W0rld!'
 }
 
-function articleReducer(state: ArticleType = initialArticle, action: ArticleAction): ArticleType {
+function articleReducer(state: ArticleType = initialArticle,
+                        action: ArticleAction): ArticleType {
   const { type, payload } = action
-
+  
   switch (type) {
     case FETCH_ARTICLE: {
       const result = payload.content.split('---')
@@ -28,7 +29,7 @@ function articleReducer(state: ArticleType = initialArticle, action: ArticleActi
       }
     }
     case FETCH_ARTICLE_ERROR:
-      console.warn('Failed to fetch article: ', payload.err)
+      console.warn('Failed to fetch article: ', payload)
       return state
     default:
       return state

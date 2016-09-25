@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import './AppContainer.less'
 import Header from '../components/Header/Header'
-import { fetchMusicList } from '../redux/actions'
+import { fetchMusicList } from '../redux/reducers/musicList'
 
 @connect(
   (state) => ({

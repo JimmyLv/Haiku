@@ -1,6 +1,13 @@
 // @flow
 
-import { FETCH_MUSIC, FETCH_MUSIC_ERROR } from '../actions'
+const FETCH_MUSIC: string = 'FETCH_MUSIC'
+const FETCH_MUSIC_ERROR: string = 'FETCH_MUSIC_ERROR'
+
+export const fetchMusicList = () =>
+    dispatch => fetch('http://app.atime.me/music-api-server/?p=netease&t=playlist&i=389445274', { mode: 'no-cors' })
+        .then(res => res.json())
+        .then(json => dispatch({ type: FETCH_MUSIC, payload: { songs: json.songs } }))
+        .catch(err => dispatch({ type: FETCH_MUSIC_ERROR, payload: new Error(err.message) }))
 
 const initialMusic = [{
   name: 'Feeling U',
@@ -17,7 +24,7 @@ function musicList(state: Array<Music> = initialMusic, action: MusicAction): Arr
     case FETCH_MUSIC:
       return [...payload.songs]
     case FETCH_MUSIC_ERROR:
-      console.warn('Failed to fetch music list!')
+      console.warn('Failed to fetch music list!', payload)
       return state
     default:
       return state

@@ -7,8 +7,6 @@ const API_URL = `https://raw.githubusercontent.com/${GITHUB.user}/${GITHUB.repo}
 
 // TODO: move to src/constants/actionTypes.js
 
-export const FETCH_MUSIC: string = 'FETCH_MUSIC'
-export const FETCH_MUSIC_ERROR: string = 'FETCH_MUSIC_ERROR'
 export const FETCH_ARTICLE: string = 'FETCH_ARTICLE'
 export const FETCH_ARTICLE_ERROR: string = 'FETCH_ARTICLE_ERROR'
 export const FETCH_ARTICLE_SUMMARY: string = 'FETCH_ARTICLE_SUMMARY'
@@ -48,12 +46,6 @@ export const fetchArticleSummary = () =>
     .then(res => res.json())
     .then(json => dispatch({ type: FETCH_ARTICLE_SUMMARY, payload: json }))
     .catch(err => dispatch({ type: FETCH_ARTICLE_SUMMARY_ERROR, payload: err }))
-
-export const fetchMusicList = () =>
-  dispatch => fetch('http://app.atime.me/music-api-server/?p=netease&t=playlist&i=389445274', { mode: 'no-cors' })
-    .then(res => res.json())
-    .then(json => dispatch({ type: FETCH_MUSIC, payload: json }))
-    .catch(err => dispatch({ type: FETCH_MUSIC_ERROR, payload: err }))
 
 export const toggleSideBar = () => ({
   type: TOGGLE_SIDEBAR

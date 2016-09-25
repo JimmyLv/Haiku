@@ -11,9 +11,11 @@ const initialMusic = [{
 }]
 
 function musicList(state: Array<Music> = initialMusic, action: MusicAction): Array<Music> {
-  switch (action.type) {
+  const { type, payload } = action
+
+  switch (type) {
     case FETCH_MUSIC:
-      return [...action.payload.songs]
+      return [...payload.songs]
     case FETCH_MUSIC_ERROR:
       console.warn('Failed to fetch music list!')
       return state

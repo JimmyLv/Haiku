@@ -3,6 +3,7 @@
 import jsyaml from 'js-yaml'
 
 import { FETCH_ARTICLE, FETCH_ARTICLE_ERROR } from '../actions'
+import { ArticleType } from '../flow/types.x'
 
 const initialArticle = {
   id: '/2011-11-11-hello-world/',
@@ -14,18 +15,20 @@ const initialArticle = {
   content: 'Hell0 W0rld!'
 }
 
-function articleReducer(state: Article = initialArticle, action: ArticleAction): Article {
-  switch (action.type) {
+function articleReducer(state: ArticleType = initialArticle, action: ArticleAction): ArticleType {
+  const { type, payload } = action
+
+  switch (type) {
     case FETCH_ARTICLE: {
-      const result = action.payload.content.split('---')
+      const result = payload.content.split('---')
       return {
-        id: action.payload.id,
+        id: payload.id,
         meta: jsyaml.load(result[1]),
         content: result.slice(2).join('---')
       }
     }
     case FETCH_ARTICLE_ERROR:
-      console.warn('Failed to fetch article: ', action.payload.err)
+      console.warn('Failed to fetch article: ', payload.err)
       return state
     default:
       return state

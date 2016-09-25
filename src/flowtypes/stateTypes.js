@@ -9,16 +9,6 @@ declare type Music = {
   provider: string;
 }
 
-declare type Article = {
-  id: string;
-  meta: {
-    title: string;
-    layout: string;
-    tags: Array<string>;
-  },
-  content: string;
-}
-
 declare type Category = {
   name: string;
   posts: Array<Article>;

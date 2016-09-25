@@ -21,11 +21,13 @@ const initialArticleSummary = {
 
 function articleSummaryReducer(state: ArticleSummary = initialArticleSummary,
                                action: ArticlesAction) {
-  switch (action.type) {
+  const { type, payload } = action
+
+  switch (type) {
     case FETCH_ARTICLE_SUMMARY:
-      return { ...action.payload }
+      return { ...payload }
     case FETCH_ARTICLE_SUMMARY_ERROR:
-      console.warn('Failed to fetch article list: ', action.payload.err)
+      console.warn('Failed to fetch article list: ', payload.err)
       return state
     default:
       return state

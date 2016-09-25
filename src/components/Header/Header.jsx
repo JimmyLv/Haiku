@@ -4,7 +4,7 @@ import './Header.less'
 import Navigation from './Navigation'
 import MusicPlayer from './MusicPlayer'
 import ToolBar from './ToolBar'
-import { toggleContent } from '../../redux/reducers/toggle'
+import { toggleContent } from '../../ducks/toggle'
 
 const menuList = [
   { name: 'Hello', link: '/hello' },

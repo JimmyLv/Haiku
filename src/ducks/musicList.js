@@ -1,6 +1,6 @@
 // @flow
 
-import { FETCH_MUSIC, FETCH_MUSIC_ERROR } from '../../constants/actionTypes'
+import { FETCH_MUSIC, FETCH_MUSIC_ERROR } from '../constants/actionTypes'
 
 export const fetchMusicList = () =>
     dispatch => fetch('http://app.atime.me/music-api-server/?p=netease&t=playlist&i=389445274', { mode: 'no-cors' })

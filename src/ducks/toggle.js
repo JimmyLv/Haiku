@@ -1,4 +1,4 @@
-import { TOGGLE_SIDEBAR, TOGGLE_CONTENT } from '../../constants/actionTypes'
+import { TOGGLE_SIDEBAR, TOGGLE_CONTENT } from '../constants/actionTypes'
 
 export const toggleSideBar = () => ({ type: TOGGLE_SIDEBAR })
 

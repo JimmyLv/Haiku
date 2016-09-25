@@ -10,7 +10,7 @@ import 'bootstrap.css'
 import 'yue.css'
 
 import Root from './config/Root'
-import store from './redux/store/'
+import store from './store/'
 
 const history = syncHistoryWithStore(hashHistory, store)
 

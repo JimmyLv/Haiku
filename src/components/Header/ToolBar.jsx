@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { browserHistory, withRouter } from 'react-router'
 
-import { randomArticle } from '../../redux/reducers/article'
+import { randomArticle } from '../../ducks/article'
 
 @withRouter
 export default class ToolBar extends Component {

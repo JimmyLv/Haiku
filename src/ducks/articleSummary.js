@@ -1,6 +1,6 @@
 // @flow
 
-import { FETCH_ARTICLE_SUMMARY, FETCH_ARTICLE_SUMMARY_ERROR } from '../../constants/actionTypes'
+import { FETCH_ARTICLE_SUMMARY, FETCH_ARTICLE_SUMMARY_ERROR } from '../constants/actionTypes'
 
 export const fetchArticleSummary = () =>
   dispatch => fetch('https://jimmylv.github.io/api/index.json')

@@ -7,9 +7,9 @@ import { loadingBarMiddleware, loadingBarReducer } from 'react-redux-loading-bar
 import throttle from 'lodash/throttle'
 
 // Apply the middleware to the store
-import * as reducers from '../reducers'
+import * as reducers from '../ducks'
 import { loadState, saveState } from './localStorage'
-import configDevTools from '../../config/DevTools'
+import configDevTools from '../config/DevTools'
 
 const store = window.store = createStore(
   combineReducers({

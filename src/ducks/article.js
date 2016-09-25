@@ -1,9 +1,9 @@
 // @flow
 
 import jsyaml from 'js-yaml'
-import { ArticleType } from '../flow/types.x'
-import { API_URL } from '../../constants/'
-import { FETCH_ARTICLE_ERROR, FETCH_ARTICLE } from '../../constants/actionTypes'
+import { ArticleType } from '../flowtypes/types.x'
+import { API_URL } from '../constants/'
+import { FETCH_ARTICLE_ERROR, FETCH_ARTICLE } from '../constants/actionTypes'
 
 import { hideLoading, showLoading } from 'react-redux-loading-bar'
 

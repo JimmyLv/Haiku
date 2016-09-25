@@ -6,7 +6,7 @@ import { GITHUB, SUB_TITLE } from '../../constants'
 
 import Article from '../../components/Blog/Article'
 import SocialShare from '../../components/Blog/SocialShare'
-import { fetchArticleIfNeeded } from '../../redux/reducers/article'
+import { fetchArticleIfNeeded } from '../../ducks/article'
 import '../../components/Blog/Article.less'
 
 @connect(

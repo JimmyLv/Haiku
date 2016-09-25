@@ -1,4 +1,8 @@
-import { TOGGLE_SIDEBAR, TOGGLE_CONTENT } from '../actions'
+import { TOGGLE_SIDEBAR, TOGGLE_CONTENT } from '../../constants/actionTypes'
+
+export const toggleSideBar = () => ({ type: TOGGLE_SIDEBAR })
+
+export const toggleContent = () => ({ type: TOGGLE_CONTENT })
 
 const initialToggleState = {
   showSideBar: true,

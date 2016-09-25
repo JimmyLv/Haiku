@@ -1,6 +1,12 @@
 // @flow
 
-import { FETCH_ARTICLE_SUMMARY, FETCH_ARTICLE_SUMMARY_ERROR } from '../actions'
+import { FETCH_ARTICLE_SUMMARY, FETCH_ARTICLE_SUMMARY_ERROR } from '../../constants/actionTypes'
+
+export const fetchArticleSummary = () =>
+  dispatch => fetch('https://jimmylv.github.io/api/index.json')
+    .then(res => res.json())
+    .then(json => dispatch({ type: FETCH_ARTICLE_SUMMARY, payload: json }))
+    .catch(err => dispatch({ type: FETCH_ARTICLE_SUMMARY_ERROR, payload: new Error(err.message) }))
 
 const initialArticle = {
   id: '/2011-11-11-hello-world/',
@@ -27,7 +33,7 @@ function articleSummaryReducer(state: ArticleSummary = initialArticleSummary,
     case FETCH_ARTICLE_SUMMARY:
       return { ...payload }
     case FETCH_ARTICLE_SUMMARY_ERROR:
-      console.warn('Failed to fetch article list: ', payload.err)
+      console.warn('Failed to fetch article list: ', payload)
       return state
     default:
       return state

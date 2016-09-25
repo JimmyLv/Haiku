@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { hashHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 
+import 'whatwg-fetch'
 import '../node_modules/font-awesome-animation/dist/font-awesome-animation.css'
 import '../node_modules/font-awesome/css/font-awesome.css'
 import 'bootstrap.css'

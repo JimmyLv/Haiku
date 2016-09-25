@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import ReactDisqus from 'react-disqus-thread'
 import { v4 } from 'node-uuid'
 
-import { fetchArticleSummary } from '../../redux/actions'
+import { fetchArticleSummary } from '../../redux/reducers/articleSummary'
 import SideBar from '../../components/Blog/SideBar'
 import './BlogContainer.less'
 

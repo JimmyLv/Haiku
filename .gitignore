@@ -8,5 +8,6 @@ bower_components/
 
 _site/
 public/
+tmp/
 
 coverage/

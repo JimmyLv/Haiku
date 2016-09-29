@@ -10,10 +10,10 @@ import { fetchArticleIfNeeded } from '../../ducks/article'
 import '../../components/Blog/Article.less'
 
 @connect(
-  (state) => ({
-    meta: state.article.meta,
-    content: state.article.content,
-    loadingBar: state.loadingBar
+  ({ article, loadingBar }) => ({
+    meta: article.meta,
+    content: article.content,
+    loadingBar
   })
 )
 export default class BlogContentContainer extends Component {

@@ -6,10 +6,10 @@ import Header from '../components/Header/Header'
 import { fetchMusicList } from '../ducks/musicList'
 
 @connect(
-  (state) => ({
-    ...state,
-    posts: state.articleSummary.paginator,
-    pathname: state.routing.locationBeforeTransitions.pathname
+  ({ musicList, articleSummary, routing }) => ({
+    musicList,
+    posts: articleSummary.paginator,
+    pathname: routing.locationBeforeTransitions.pathname
   })
 )
 export default class AppContainer extends Component {

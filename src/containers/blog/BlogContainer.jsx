@@ -17,9 +17,9 @@ type PropsType = {
 }
 
 @connect(
-  (state) => ({
-    categories: state.articleSummary.categories,
-    showContent: state.toggle.showContent
+  ({ articleSummary, toggle }) => ({
+    categories: articleSummary.categories,
+    showContent: toggle.showContent
   })
 )
 export default class BlogContainer extends Component {

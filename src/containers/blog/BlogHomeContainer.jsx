@@ -6,9 +6,9 @@ import PostPanel from '../../components/Blog/PostPanel'
 import './BlogHomeContainer.less'
 
 @connect(
-  (state) => ({
-    tags: state.articleSummary.tags,
-    paginator: state.articleSummary.paginator,
+  ({ articleSummary }) => ({
+    tags: articleSummary.tags,
+    paginator: articleSummary.paginator,
   })
 )
 export default class BlogHomePage extends Component {

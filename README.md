@@ -15,7 +15,16 @@ Status](https://img.shields.io/david/dev/JimmyLv/Haiku.svg?style=flat-square)](h
 
 ## Getting Started
 
-Only need change configuration inside `_config.yml` as you did in [Jekyll](https://jekyllrb.com).
+Only need add configuration inside `_config.yml` as you did in [Jekyll](https://jekyllrb.com).
+
+1. fork this project
+2. switch to [`gh-pages`](./tree/gh-pages) branch
+3. edit [`_config.yml`][./gh-pages/_config.yml] file
+4. replace `haiku` config with your jekyll posts
+5. or add posts inside `_posts` folder on `gh-pages` branch
+6. open [`yourname.github.io/haiku`](http://haiku.jimmylv.info/)
+
+## TODO 
 
 - [ ] Add more details about configs.
 - [ ] Extract separate project as git submodule.

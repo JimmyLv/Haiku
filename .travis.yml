@@ -50,6 +50,7 @@ after_success:
   - |
     if [ -n "$GITHUB_API_KEY" ]; then
       cp CNAME public/CNAME
+      cp _config.yml public/_config.yml
       cd public
       git init
       git config --global user.email "Travis CI"

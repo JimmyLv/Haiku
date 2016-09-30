@@ -4,7 +4,6 @@ import classnames from 'classnames'
 import ReactDisqus from 'react-disqus-thread'
 import { v4 } from 'node-uuid'
 
-import { REQUEST_ARTICLE_SUMMARY } from '../../constants/actionTypes'
 import SideBar from '../../components/Blog/SideBar'
 import './BlogContainer.less'
 
@@ -23,10 +22,6 @@ type PropsType = {
   })
 )
 export default class BlogContainer extends Component {
-  componentDidMount() {
-    this.props.dispatch({ type: REQUEST_ARTICLE_SUMMARY })
-  }
-  
   props: PropsType
   
   handleNewComment(comment) {

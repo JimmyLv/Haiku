@@ -9,7 +9,7 @@ import throttle from 'lodash/throttle'
 
 // Apply the middleware to the store
 import * as reducers from '../ducks'
-import mySaga from '../ducks/sagas'
+import rootSaga from '../saga'
 import { loadState, saveState } from './localStorage'
 import configDevTools from '../config/DevTools'
 
@@ -34,7 +34,7 @@ const store = window.store = createStore(
   )
 )
 
-sagaMiddleware.run(mySaga)
+sagaMiddleware.run(rootSaga)
 
 store.subscribe(throttle(() => {
   saveState(store.getState())

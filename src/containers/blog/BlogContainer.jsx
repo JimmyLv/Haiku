@@ -6,11 +6,11 @@ import { v4 } from 'node-uuid'
 
 import SideBar from '../../components/Blog/SideBar'
 import './BlogContainer.less'
+import { Category } from '../../flowtypes/stateTypes'
 
 type PropsType = {
-  categories: Array<Object>,
+  categories: Array<Category>,
   showContent: boolean,
-  dispatch: (actionCreator: Function) => void,
   params: Object,
   children: Object
 }

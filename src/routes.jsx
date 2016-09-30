@@ -8,11 +8,15 @@ import { BlogContainer, BlogHomeContainer, BlogContentContainer } from './contai
 import AppListPage from './pages/AppListPage'
 import PhotoPage from './pages/PhotoPage'
 import NotFoundPage from './pages/NotFoundPage'
-import { REQUEST_ARTICLE_SUMMARY } from './constants/actionTypes'
+import { REQUEST_ARTICLE_SUMMARY, REQUEST_MUSIC } from './constants/actionTypes'
 
 const renderRoutes = (history) => (
   <Router history={history}>
-    <Route path="/" component={AppContainer}>
+    <Route
+      path="/"
+      component={AppContainer}
+      onEnter={store.dispatch({ type: REQUEST_MUSIC })}
+    >
       <IndexRedirect to="/note-blog" />
       <Route
         path="note-blog"

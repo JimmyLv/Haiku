@@ -3,6 +3,7 @@
 export const TOGGLE_SIDEBAR: string = 'TOGGLE_SIDEBAR'
 export const TOGGLE_CONTENT: string = 'TOGGLE_CONTENT'
 
+export const REQUEST_MUSIC: string = 'REQUEST_MUSIC'
 export const FETCH_MUSIC: string = 'FETCH_MUSIC'
 export const FETCH_MUSIC_ERROR: string = 'FETCH_MUSIC_ERROR'
 

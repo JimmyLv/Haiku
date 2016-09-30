@@ -1,7 +1,22 @@
-import React, { Component, PropTypes, } from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router'
+import classnames from 'classnames'
 
-class Navigation extends Component {
+type PropsType = {
+  menuList: Array<{
+    name: string,
+    link: string
+  }>,
+  selectedUrl: string
+}
+
+@connect(
+  ({ routing }) => ({
+    selectedUrl: routing.locationBeforeTransitions.pathname
+  })
+)
+export default class Navigation extends Component {
   constructor(props) {
     super(props)
     this.toggleUserLogin = this.toggleUserLogin.bind(this)
@@ -9,14 +24,16 @@ class Navigation extends Component {
       hasLoggedIn: false
     }
   }
-
+  
+  props: PropsType
+  
   toggleUserLogin() {
     this.setState({
       hasLoggedIn: !this.state.hasLoggedIn,
       username: 'JimmyLv'
     })
   }
-
+  
   showMenuForUserLoggedIn() {
     return (
       <span>
@@ -25,13 +42,19 @@ class Navigation extends Component {
       </span>
     )
   }
-
+  
   render() {
     const { menuList, selectedUrl } = this.props
     const { hasLoggedIn, username } = this.state
     return (
       <div className="menu m-hide">
-        {menuList.map((menu, index) => <Link key={index} className={selectedUrl.includes(menu.link) ? 'active' : ''} to={menu.link}> {menu.name} </Link>)}
+        {menuList.map((menu, index) => (
+          <Link
+            key={index}
+            className={classnames({ 'active': selectedUrl.includes(menu.link) })}
+            to={menu.link}
+          > {menu.name} </Link>)
+        )}
         {hasLoggedIn ? this.showMenuForUserLoggedIn() : ''}
         <a onClick={this.toggleUserLogin}>{hasLoggedIn ? username : 'Firebase'}</a>
         <a href="https://github.com/JimmyLv/nobackend.website" target="_blank">GitHub</a>
@@ -40,10 +63,12 @@ class Navigation extends Component {
   }
 }
 
-Navigation.propTypes = {
-  menuList: PropTypes.array.isRequired,
-  selectedUrl: PropTypes.string.isRequired
+Navigation.defaultProps = {
+  menuList: [
+    { name: 'Hello', link: '/hello' },
+    { name: 'AppList', link: '/app-list' },
+    { name: 'Blog', link: '/note-blog' },
+    { name: 'Photo', link: '/photo' },
+    { name: 'Zhihu', link: '/pages/zhihu' }
+  ]
 }
-Navigation.defaultProps = {}
-
-export default Navigation

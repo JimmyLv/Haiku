@@ -6,23 +6,21 @@ import Header from '../components/Header/Header'
 import { Article } from '../flowtypes/stateTypes'
 
 type PropsType = {
-  pathname: string,
   posts: Array<Article>,
   dispatch: Function,
   children: ReactElement
 }
 
 const AppContainer =
-  ({ pathname, posts, dispatch, children }: PropsType) => (
+  ({ posts, dispatch, children }: PropsType) => (
     <div className="main-app">
-      <Header {...{ pathname, posts, dispatch }} />
+      <Header {...{ posts, dispatch }} />
       {children}
     </div>
   )
 
 export default connect(
-  ({ articleSummary, routing }) => ({
+  ({ articleSummary }) => ({
     posts: articleSummary.paginator,
-    pathname: routing.locationBeforeTransitions.pathname
   })
 )(AppContainer)

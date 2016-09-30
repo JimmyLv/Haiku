@@ -8,7 +8,9 @@ import { BlogContainer, BlogHomeContainer, BlogContentContainer } from './contai
 import AppListPage from './pages/AppListPage'
 import PhotoPage from './pages/PhotoPage'
 import NotFoundPage from './pages/NotFoundPage'
+
 import { REQUEST_ARTICLE_SUMMARY, REQUEST_MUSIC } from './constants/actionTypes'
+import { fetchArticleIfNeeded } from './ducks/article'
 
 const renderRoutes = (history) => (
   <Router history={history}>
@@ -24,7 +26,11 @@ const renderRoutes = (history) => (
         onEnter={store.dispatch({ type: REQUEST_ARTICLE_SUMMARY })}
       >
         <IndexRoute component={BlogHomeContainer} />
-        <Route path=":category/:id/" component={BlogContentContainer} />
+        <Route
+          path=":category/:id/"
+          component={BlogContentContainer}
+          onEnter={({ params }) => store.dispatch(fetchArticleIfNeeded(params.category, params.id))}
+        />
       </Route>
       <Route path="app-list" component={AppListPage} />
       <Route path="photo" component={PhotoPage} />

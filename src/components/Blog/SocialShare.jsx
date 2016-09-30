@@ -1,11 +1,15 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import QRCode from 'qrcode.react'
 import classnames from 'classnames'
 
 import './SocialShare.less'
 
-const SocialShare = ({ meta }) => {
-  const { tags, title } = meta
+type PropsType = {
+  tags: Array<string>,
+  title: string,
+}
+
+const SocialShare = ({ tags, title }: PropsType) => {
   const encodedShareLink = encodeURI(window.location.href.replace('#', '!#'))
   const formattedHashTags = tags.map(tag => `#${tag}#`).join(' ')
   const encodedShareContent = encodeURI(`${title} ${formattedHashTags} | 最美博客`)
@@ -35,10 +39,5 @@ const SocialShare = ({ meta }) => {
     </div>
   )
 }
-
-SocialShare.propTypes = {
-  meta: PropTypes.object.isRequired
-}
-SocialShare.defaultProps = {}
 
 export default SocialShare

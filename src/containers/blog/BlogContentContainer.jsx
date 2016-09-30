@@ -48,7 +48,7 @@ export default class BlogContentContainer extends Component {
         <LoadingBar />
         <Article {...{ meta, content, editUrl, filename }} />
         <hr />
-        <SocialShare meta={meta} />
+        <SocialShare {...meta} />
       </div>
     )
   }

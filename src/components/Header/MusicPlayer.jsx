@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import sample from 'lodash/sample'
 import without from 'lodash/without'
@@ -6,8 +7,16 @@ import without from 'lodash/without'
 import './Player.less'
 import ReactPlayer from 'react-player'
 import Duration from './Duration'
+import { Music } from '../../flowtypes/stateTypes'
 
-class MusicPlayer extends Component {
+type PropsType = {
+  musicList: Array<Music>
+}
+
+@connect(
+  ({ musicList }) => ({ musicList })
+)
+export default class MusicPlayer extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -20,25 +29,26 @@ class MusicPlayer extends Component {
       duration: 0
     }
   }
-
+  
   componentWillMount() {
     this.shuffle()
   }
-
+  
   onProgress(state) {
     // We only want to update time slider if we are not currently seeking
     if (!this.state.seeking) {
       this.setState(state)
     }
   }
-
+  
   setVolume(e) {
     this.setState({ volume: parseFloat(e.target.value) })
   }
-
+  
+  props: PropsType
+  
   shuffle() {
-    const selectedMusic = sample(without(this.props.songs, this.state.selectedMusic))
-    // const selectedMusic = sample(this.props.songs)
+    const selectedMusic = sample(without(this.props.musicList, this.state.selectedMusic))
     this.setState({
       selectedMusic,
       playing: true,
@@ -46,32 +56,32 @@ class MusicPlayer extends Component {
       loaded: 0
     })
   }
-
+  
   togglePlaying() {
     this.setState({ playing: !this.state.playing })
   }
-
+  
   toggleMuting() {
     this.setState({ volume: this.state.volume > 0.5 ? 0 : 1 })
   }
-
+  
   stop() {
     this.setState({ selectedMusic: null, playing: false })
   }
-
+  
   toggleName() {
     this.setState({ showName: !this.state.showName })
   }
-
+  
   render() {
     const {
       playing, volume,
       played, duration,
       showName, selectedMusic
     } = this.state
-
+    
     const selectedMusicName = `${selectedMusic.name} - ${selectedMusic.artists}`
-
+    
     return (
       <div className="music-player m-player link">
         <ReactPlayer
@@ -92,19 +102,19 @@ class MusicPlayer extends Component {
           onDuration={d => this.setState({ duration: d })}
         />
         <a href={`http://music.163.com/#/search/m/?s=${selectedMusicName}`} target="_blank">
-          <i className={playing ? 'faa-float animated fa fa-lg fa-music' : 'fa fa-lg fa-music'}/>
+          <i className={playing ? 'faa-float animated fa fa-lg fa-music' : 'fa fa-lg fa-music'} />
         </a>
         <a onClick={this.togglePlaying.bind(this)}>
-          <i className={!playing ? 'fa fa-play' : 'fa fa-pause'}/>
+          <i className={!playing ? 'fa fa-play' : 'fa fa-pause'} />
         </a>
         <a onClick={this.shuffle.bind(this)}>
-          <i className="fa fa-random"/>
+          <i className="fa fa-random" />
         </a>
         <a onClick={this.toggleMuting.bind(this)}>
-          <i className={volume === 0 ? 'fa fa-volume-off' : 'fa fa-volume-up'}/>
+          <i className={volume === 0 ? 'fa fa-volume-off' : 'fa fa-volume-up'} />
         </a>
         <a onClick={this.toggleName.bind(this)}>
-          <Duration seconds={duration * (1 - played)}/>
+          <Duration seconds={duration * (1 - played)} />
           <span className="music-name m-hide fx-fade-normal fx-dur-600 fx-ease-none">
             {showName ? selectedMusicName : ''}
           </span>
@@ -113,10 +123,3 @@ class MusicPlayer extends Component {
     )
   }
 }
-
-MusicPlayer.propTypes = {
-  songs: PropTypes.array.isRequired
-}
-MusicPlayer.defaultProps = {}
-
-export default MusicPlayer

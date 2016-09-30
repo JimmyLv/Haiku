@@ -23,7 +23,7 @@ function* fetchArticleSummary() {
   }
 }
 
-function* fetchMusic() {
+function* fetchMusicList() {
   try {
     yield take(REQUEST_MUSIC)
     const json = yield call(fetchJsonpData, 'https://api.lostg.com/music/163/collections/429176788')
@@ -43,7 +43,7 @@ function* fetchMusic() {
 
 export default function* rootSaga() {
   yield [
-    fork(fetchMusic),
+    fork(fetchMusicList),
     fork(fetchArticleSummary),
   ]
 }

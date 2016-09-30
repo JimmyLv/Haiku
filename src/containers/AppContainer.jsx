@@ -3,10 +3,9 @@ import { connect } from 'react-redux'
 
 import './AppContainer.less'
 import Header from '../components/Header/Header'
-import { Music, Article } from '../flowtypes/stateTypes'
+import { Article } from '../flowtypes/stateTypes'
 
 type PropsType = {
-  musicList: Array<Music>,
   pathname: string,
   posts: Array<Article>,
   dispatch: Function,
@@ -14,16 +13,15 @@ type PropsType = {
 }
 
 const AppContainer =
-  ({ musicList, pathname, posts, dispatch, children }: PropsType) => (
+  ({ pathname, posts, dispatch, children }: PropsType) => (
     <div className="main-app">
-      <Header {...{ musicList, pathname, posts, dispatch }} />
+      <Header {...{ pathname, posts, dispatch }} />
       {children}
     </div>
   )
 
 export default connect(
-  ({ musicList, articleSummary, routing }) => ({
-    musicList,
+  ({ articleSummary, routing }) => ({
     posts: articleSummary.paginator,
     pathname: routing.locationBeforeTransitions.pathname
   })

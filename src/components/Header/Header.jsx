@@ -14,21 +14,20 @@ const menuList = [
   { name: 'Zhihu', link: '/pages/zhihu' }
 ]
 
-const Header = ({ musicList, pathname, posts, dispatch }) => (
+const Header = ({ pathname, posts, dispatch }) => (
   <header id="header">
     <div className="logo">
       <span onClick={() => dispatch(toggleContent())} title="立青作品">
-        <img alt="avatar" src="//o7mw3gkkh.qnssl.com/images/2016/1465649945502.png"/>
+        <img alt="avatar" src="//o7mw3gkkh.qnssl.com/images/2016/1465649945502.png" />
       </span>
     </div>
-    <Navigation menuList={menuList} selectedUrl={pathname}/>
-    <MusicPlayer songs={musicList}/>
+    <Navigation menuList={menuList} selectedUrl={pathname} />
+    <MusicPlayer />
     <ToolBar posts={posts} dispatch={dispatch} />
   </header>
 )
 
 Header.propTypes = {
-  musicList: PropTypes.array.isRequired,
   pathname: PropTypes.string.isRequired,
   posts: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired

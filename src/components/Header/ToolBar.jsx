@@ -1,16 +1,12 @@
 import React, { Component, PropTypes } from 'react'
-import { browserHistory, withRouter } from 'react-router'
+import { browserHistory } from 'react-router'
 
 import { fetchArticle } from '../../ducks/article'
 
-@withRouter
 export default class ToolBar extends Component {
   static propTypes = {
     posts: PropTypes.array.isRequired,
     dispatch: PropTypes.func.isRequired,
-    router: React.PropTypes.shape({
-      push: React.PropTypes.func.isRequired
-    }).isRequired
   }
 
   constructor(props) {
@@ -26,7 +22,6 @@ export default class ToolBar extends Component {
   randomPost() {
     const { posts, dispatch } = this.props
     const post = posts[Math.floor(Math.random() * posts.length)]
-    // this.props.router.push(`/note-blog/${post.category}${post.url}`)
     browserHistory.push(`#/note-blog/${post.category}${post.url}`)
     dispatch(fetchArticle(post.category, post.url.split('/')[1]))
   }

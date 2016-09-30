@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
 import './AppContainer.less'
@@ -13,23 +13,18 @@ type PropsType = {
   children: ReactElement
 }
 
-@connect(
+const AppContainer =
+  ({ musicList, pathname, posts, dispatch, children }: PropsType) => (
+    <div className="main-app">
+      <Header {...{ musicList, pathname, posts, dispatch }} />
+      {children}
+    </div>
+  )
+
+export default connect(
   ({ musicList, articleSummary, routing }) => ({
     musicList,
     posts: articleSummary.paginator,
     pathname: routing.locationBeforeTransitions.pathname
   })
-)
-export default class AppContainer extends Component {
-  props: PropsType
-
-  render() {
-    const { musicList, pathname, posts, dispatch } = this.props
-    return (
-      <div className="main-app">
-        <Header {...{ musicList, pathname, posts, dispatch }}/>
-        {this.props.children}
-      </div>
-    )
-  }
-}
+)(AppContainer)

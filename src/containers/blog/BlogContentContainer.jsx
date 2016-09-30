@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading-bar'
 
@@ -9,19 +9,22 @@ import SocialShare from '../../components/Blog/SocialShare'
 import { fetchArticleIfNeeded } from '../../ducks/article'
 import '../../components/Blog/Article.less'
 
+type PropsType = {
+  params: Object,
+  meta: Object,
+  content: string,
+  dispatch: Function
+}
+
 @connect(
-  ({ article }) => ({
+  ({ article }, { params }) => ({
     meta: article.meta,
     content: article.content,
+    category: params.category,
+    id: params.id,
   })
 )
 export default class BlogContentContainer extends Component {
-  static propTypes = {
-    params: PropTypes.object.isRequired,
-    meta: PropTypes.object.isRequired,
-    content: PropTypes.string.isRequired,
-    dispatch: PropTypes.func.isRequired
-  }
   
   componentDidMount() {
     const { category, id } = this.props.params
@@ -34,6 +37,8 @@ export default class BlogContentContainer extends Component {
       this.props.dispatch(fetchArticleIfNeeded(category, id))
     }
   }
+  
+  props: PropsType
   
   render() {
     const { meta, content } = this.props

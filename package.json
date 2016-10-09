@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -rf public && rm -rf _site",
     "dev": "webpack-dev-server --config webpack.config.js",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js --progress --colors --hide-modules",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js --progress --colors --hide-modules && cp manifest.json cache-polyfill.js public/ && sw-precache --navigate-fallback='index.html' --root='public/' --static-file-globs='public/**/!(*map*)'",
     "lint": "eslint src/. --ext .jsx --ext .js; exit 0",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "fix": "eslint --fix src/. --ext .jsx --ext .js; exit 0",
@@ -50,6 +50,7 @@
     "redux": "^3.5.2",
     "redux-saga": "^0.11.1",
     "redux-thunk": "^2.1.0",
+    "sw-precache": "^4.1.0",
     "whatwg-fetch": "^1.0.0"
   },
   "optionalDependencies": {

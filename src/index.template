@@ -2,11 +2,21 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>最美博客 - nobackend-website created by 吕立青</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="manifest" href="./manifest.json">
+    <title>最美博客 - nobackend-website created by 吕立青</title>
 </head>
 <body>
 <div id="app"></div>
+<!-- service worker -->
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js').catch(function (ex) {
+            console.warn(ex);
+            console.warn('(This warning can be safely ignored outside of the production build.)');
+        });
+    }
+</script>
 </body>
 </html>

@@ -8,8 +8,9 @@
   "installedESLint": true,
   "plugins": [
     "react",
+    "immutable",
     "flowtype",
-    "immutable"
+    "flowtype-errors"
   ],
   "settings": {
     "import/resolver": {
@@ -43,6 +44,7 @@
     //    "immutable/no-this": 2,
     //    "immutable/no-mutation": 2
     // flowtype
+    "flowtype-errors/show-errors": 2,
     "flowtype/boolean-style": [2, "boolean"],
     "flowtype/define-flow-type": 1,
     "flowtype/delimiter-dangle": [2, "boolean"],

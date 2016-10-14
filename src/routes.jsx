@@ -17,13 +17,13 @@ const renderRoutes = (history) => (
     <Route
       path="/"
       component={AppContainer}
-      onEnter={store.dispatch({ type: REQUEST_MUSIC })}
+      onEnter={() => store.dispatch({ type: REQUEST_MUSIC })}
     >
       <IndexRedirect to="/note-blog" />
       <Route
         path="note-blog"
         component={BlogContainer}
-        onEnter={store.dispatch({ type: REQUEST_ARTICLE_SUMMARY })}
+        onEnter={() => store.dispatch({ type: REQUEST_ARTICLE_SUMMARY })}
       >
         <IndexRoute component={BlogHomeContainer} />
         <Route

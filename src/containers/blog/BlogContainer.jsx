@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
-import ReactDisqus from 'react-disqus-thread'
+import ReactDisqus from 'react-disqus'
+// import ReactDisqus from 'react-disqus-thread'
 import { v4 } from 'node-uuid'
 
 import SideBar from '../../components/Blog/SideBar'
@@ -43,8 +44,7 @@ export default class BlogContainer extends Component {
           <ReactDisqus
             shortname="nobackend-website"
             identifier="nobackend-website"
-            title="Haiku"
-            onNewComment={this.handleNewComment.bind(this)}
+            pageurl="http://haiku.jimmylv.info"
           />
         </div>
       </div>

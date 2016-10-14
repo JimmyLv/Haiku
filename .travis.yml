@@ -22,7 +22,7 @@ script:
   - tar xfz qiniu-*.tar.gz
   - ./qrsync scripts/conf.json
 after_script:
-  - npm run codecov
+  - npm run test:codecov
 cache:
   directories:
     - node_modules

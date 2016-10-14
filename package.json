@@ -6,14 +6,16 @@
   "scripts": {
     "clean": "rm -rf public && rm -rf _site",
     "dev": "webpack-dev-server --config webpack.config.js",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js --progress --colors --hide-modules && cp manifest.json cache-polyfill.js public/ && sw-precache --navigate-fallback='index.html' --root='public/' --static-file-globs='public/**/!(*map*)'",
-    "lint": "eslint src/. --ext .jsx --ext .js; exit 0",
+    "build:pwa": "cp cache-polyfill.js public/ && sw-precache --navigate-fallback='index.html' --root='public/' --static-file-globs='public/**/!(*map*)'",
+    "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.js --progress --colors --hide-modules && npm run build:pwa",
+    "build": "npm run clean && npm run build:webpack && npm run build:pwa",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
-    "fix": "eslint --fix src/. --ext .jsx --ext .js; exit 0",
+    "lint": "eslint src/. --ext .jsx --ext .js; exit 0",
+    "lint:fix": "eslint --fix src/. --ext .jsx --ext .js; exit 0",
     "test": "karma start --single-run=true",
-    "cdn": "cd scripts && ./qrsync-v2 conf.json",
-    "prod": "npm run fix && npm run test && npm run build && npm run cdn",
-    "codecov": "cat coverage/*/lcov.info | codecov",
+    "test:codecov": "cat coverage/*/lcov.info | codecov",
+    "deploy:cdn": "cd scripts && ./qrsync-v2 conf.json",
+    "deploy:prod": "npm run fix && npm run test && npm run build && npm run cdn",
     "start": "npm run clean && npm run build && jekyll serve"
   },
   "repository": {

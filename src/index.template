@@ -14,14 +14,16 @@
     <link rel="shortcut icon" href="./favicon.ico">
 </head>
 <body>
-<div id="app"></div>
 <!-- service worker -->
 <script>
     if ('serviceWorker' in navigator) {
+        console.info('going to register service-worker')
         navigator.serviceWorker.register('service-worker.js').catch(function (ex) {
             console.warn(ex);
             console.warn('(This warning can be safely ignored outside of the production build.)');
         });
+    } else {
+        console.info('Error to register service-worker')
     }
 </script>
 </body>

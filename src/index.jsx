@@ -16,4 +16,7 @@ import store from './store/'
 
 const history = syncHistoryWithStore(hashHistory, store)
 
-ReactDOM.render(<Root store={store} history={history} />, document.body)
+ReactDOM.render(
+  <Root store={store} history={history}/>,
+  document.getElementById('app')
+)

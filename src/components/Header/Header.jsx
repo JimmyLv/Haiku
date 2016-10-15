@@ -10,7 +10,7 @@ const Header = ({ posts, dispatch }) => (
   <header id="header">
     <div className="logo">
       <span onClick={() => dispatch(toggleContent())} title="立青作品">
-        <img alt="avatar" src="//o7mw3gkkh.qnssl.com/images/2016/1465649945502.png" />
+        <img alt="avatar" src={require('../../../assets/images/avatar.jpg')} />
       </span>
     </div>
     <Navigation />

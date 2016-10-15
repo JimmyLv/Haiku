@@ -16,6 +16,11 @@ const renderRoutes = (history) => (
   <Router history={history}>
     <Route
       path="/"
+      getComponent={(location, callback) => {
+        require.ensure([], require => {
+          callback(null, require('./containers').AppContainer)
+        }, 'AppContainer')
+      }}
       component={AppContainer}
       onEnter={() => store.dispatch({ type: REQUEST_MUSIC })}
     >

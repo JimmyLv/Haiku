@@ -6,6 +6,7 @@ const autoprefixer = require('autoprefixer')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const HappyPack = require('happypack')
 
 const isProd = process.env.NODE_ENV === 'production'
@@ -17,33 +18,27 @@ const PATHS = {
   publicPath: './'
 }
 
+const SW_PRECACHE_CONFIG = {
+  cacheId: 'haiku',
+  filename: 'service-worker.js',
+  staticFileGlobsIgnorePatterns: [/public\/.*\.html/],
+  runtimeCaching: [{
+    handler: 'cacheFirst',
+    urlPattern: /[.]mp3$/,
+  }],
+}
+
 const config = {
   stats: { children: false },
   entry: {
-    app: PATHS.app,
-    vendor: [
-      // react
-      'react',
-      'react-dom',
-      'react-redux',
-      'react-router',
-      'react-router-redux',
-      'redux',
-      'redux-thunk',
-
-      // 3rd dependencies
-      'history',
-      'react-player',
-      'whatwg-fetch',
-      'fetch-jsonp'
-    ]
+    app: PATHS.app
   },
   output: {
     path: PATHS.build,
     publicPath: isProd ? PATHS.publicPath : '',
     filename: 'bundle.js'
   },
-
+  
   module: {
     loaders: [
       { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['react-hot', 'happypack/loader'] },
@@ -56,14 +51,47 @@ const config = {
   postcss() {
     return [precss, autoprefixer]
   },
-
+  
   plugins: [
     new HappyPack({
       cache: true,
       loaders: ['babel?cacheDirectory=true'],
       threads: 5
     }),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity,
+      filename: 'vendor.js',
+      chunks: [
+        // react
+        'react',
+        'react-dom',
+        'react-redux',
+        'react-router',
+        'react-router-redux',
+        'redux',
+        'redux-thunk',
+        'redux-saga',
+        
+        // react components
+        'react-player',
+        'react-disqus',
+        'react-disqus-thread',
+        'react-redux-loading-bar',
+        
+        // 3rd dependencies
+        'node-uuid',
+        'classnames',
+        'history',
+        'js-yaml',
+        'marked',
+        'highlight.js',
+        'whatwg-fetch',
+        'fetch-jsonp',
+        'es6-promise',
+        'firebase',
+      ],
+    }),
     new ExtractTextPlugin('[name].css'),
     new HtmlWebpackPlugin({ // 根据模板插入css/js等生成最终HTML
       // favicon: './assets/images/favicon-144x144.png', // favicon路径，通过webpack引入同时可以生成hash值
@@ -71,10 +99,11 @@ const config = {
       template: './src/index.template', // html模板路径
       inject: 'body', // js插入的位置，true/'head'/'body'/false
       hash: !!isProd, // 为静态资源生成hash值
-      chunks: ['vendor', 'app'], // 需要引入的chunk，不配置就会引入所有页面的资源
-    })
+      // chunks: ['vendor', 'app'], // 需要引入的chunk，不配置就会引入所有页面的资源
+    }),
+    new SWPrecacheWebpackPlugin(SW_PRECACHE_CONFIG)
   ],
-
+  
   resolve: {
     extensions: ['', '.js', '.jsx', '.json'],
     modulesDirectories: ['node_modules', 'assets/styles', 'assets/images']
@@ -110,7 +139,7 @@ if (isProd) {
     hot: true,
     inline: true,
     progress: true,
-    stats: 'errors-only',
+    stats: { children: false, colors: true, reasons: false },
     port: 8080
   }
   config.plugins.push(

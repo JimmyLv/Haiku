@@ -4,11 +4,12 @@ const webpack = require('webpack')
 const precss = require('precss')
 const autoprefixer = require('autoprefixer')
 
+const HappyPack = require('happypack')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
-const HappyPack = require('happypack')
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -20,13 +21,35 @@ const PATHS = {
 }
 
 const SW_PRECACHE_CONFIG = {
-  cacheId: 'haiku',
+  // plugin options
   filename: 'service-worker.js',
-  staticFileGlobsIgnorePatterns: [/public\/.*\.html/],
-  runtimeCaching: [{
-    handler: 'cacheFirst',
-    urlPattern: /[.]mp3$/,
-  }],
+  // sw-precache options
+  cacheId: require('./package.json').name,
+  verbose: true,
+  runtimeCaching: [
+    {
+      handler: 'cacheFirst',
+      urlPattern: /[.]mp3$/,
+    },
+    {
+      handler: 'fastest',
+      urlPattern: /^https:\/\/api\.lostg\.com/,
+    },
+    {
+      handler: 'fastest',
+      urlPattern: /^https:\/\/jimmylv\.gtihub\.io/,
+    },
+    {
+      handler: 'fastest',
+      urlPattern: /^https:\/\/raw\.githubusercontent\.com/,
+      options: {
+        cache: {
+          maxEntries: 10,
+          name: 'articles-cache'
+        }
+      }
+    }
+  ],
 }
 
 const config = {
@@ -88,10 +111,11 @@ const config = {
       loaders: ['babel?cacheDirectory=true'],
       threads: 5
     }),
+    new CopyWebpackPlugin([{ from: 'cache-polyfill.js' }]),
     new CommonsChunkPlugin('vendor', 'vendor.js'),
     new ExtractTextPlugin('[name].css'),
     new HtmlWebpackPlugin({ // 根据模板插入css/js等生成最终HTML
-      // favicon: './assets/images/favicon-144x144.png', // favicon路径，通过webpack引入同时可以生成hash值
+      favicon: 'favicon.ico', // favicon路径，通过webpack引入同时可以生成hash值
       filename: './index.html', // 生成的html存放路径，相对于path
       template: './src/index.template', // html模板路径
       inject: 'body', // js插入的位置，true/'head'/'body'/false

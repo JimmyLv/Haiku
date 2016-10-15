@@ -10,6 +10,18 @@ before_install:
   - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
+  # Deployment
+  - openssl aes-256-cbc -K $encrypted_68227d46cd32_key -iv $encrypted_68227d46cd32_iv -in .travis/id_rsa.enc -out ~/.ssh/id_rsa -d
+  # 改变文件权限
+  - chmod 600 ~/.ssh/id_rsa
+  # 配置 ssh
+  - eval $(ssh-agent)
+  - ssh-add ~/.ssh/id_rsa
+  - cp .travis/ssh_config ~/.ssh/config
+  # 配置 git 信息
+  - git config --global user.name 'Travis CI'
+  - git config --global user.email travis@jimmylv.com
+
 script:
 #  - npm install -g firebase-tools
 #  - rm -rf .happypack
@@ -48,16 +60,11 @@ after_success:
   # - firebase deploy --email ${FIREBASE_USERNAME} --password ${FIREBASE_PASSWORD}
   - bash <(curl -s https://codecov.io/bash)
   - |
-    if [ -n "$GITHUB_API_KEY" ]; then
-      cp CNAME public/CNAME
-      cp _config.yml public/_config.yml
-      cd public
-      git init
-      git config --global user.email "Travis CI"
-      git config --global user.name "travis@jimmylv.com"
-      git add .
-      git commit -m "Deploy at `date +"%Y-%m-%d %H:%M"`"
-      # Make sure to make the output quiet, or else the API token will leak!
-      # This works because the API key can replace your password.
-      git push -f -q https://$GITHUB_API_KEY@github.com/JimmyLv/Haiku.git master:gh-pages > /dev/null 2>&1
-    fi
+    cd public
+    touch .nojekyll
+    git init
+    git add .
+    git commit -m "Deploy at `date +"%Y-%m-%d %H:%M"`"
+    # Make sure to make the output quiet, or else the API token will leak!
+    # This works because the API key can replace your password.
+    git push -f -q git@git.coding.net:jimmylv/haiku.git master:coding-pages > /dev/null 2>&1

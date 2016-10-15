@@ -72,7 +72,7 @@ after_success:
   # Deploy to GitHub Page
   - |
     if [ -n "$GITHUB_API_KEY" ]; then
-#      cp CNAME public/CNAME
+      # cp CNAME public/CNAME
       cp _config.yml public/_config.yml
       cd public
       git init

@@ -11,7 +11,7 @@ before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   # Deployment
-  - openssl aes-256-cbc -K $encrypted_68227d46cd32_key -iv $encrypted_68227d46cd32_iv -in .travis/id_rsa.enc -out ~/.ssh/id_rsa -d
+  - openssl aes-256-cbc -K $encrypted_8c46388de977_key -iv $encrypted_8c46388de977_iv -in .travis/id_rsa.enc -out ~/.ssh/id_rsa -d
   # 改变文件权限
   - chmod 600 ~/.ssh/id_rsa
   # 配置 ssh

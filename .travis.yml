@@ -59,6 +59,7 @@ cache:
 after_success:
   # - firebase deploy --email ${FIREBASE_USERNAME} --password ${FIREBASE_PASSWORD}
   - bash <(curl -s https://codecov.io/bash)
+  # Deploy to Coding Page
   - |
     cd public
     touch .nojekyll
@@ -68,3 +69,16 @@ after_success:
     # Make sure to make the output quiet, or else the API token will leak!
     # This works because the API key can replace your password.
     git push -f -q git@git.coding.net:jimmylv/haiku.git master:coding-pages > /dev/null 2>&1
+  # Deploy to GitHub Page
+  - |
+    if [ -n "$GITHUB_API_KEY" ]; then
+#      cp CNAME public/CNAME
+      cp _config.yml public/_config.yml
+      cd public
+      git init
+      git add .
+      git commit -m "Deploy at `date +"%Y-%m-%d %H:%M"`"
+      # Make sure to make the output quiet, or else the API token will leak!
+      # This works because the API key can replace your password.
+      git push -f -q https://$GITHUB_API_KEY@github.com/JimmyLv/Haiku.git master:gh-pages > /dev/null 2>&1
+    fi

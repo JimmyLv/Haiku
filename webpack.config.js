@@ -4,6 +4,7 @@ const webpack = require('webpack')
 const precss = require('precss')
 const autoprefixer = require('autoprefixer')
 
+const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
@@ -31,7 +32,36 @@ const SW_PRECACHE_CONFIG = {
 const config = {
   stats: { children: false },
   entry: {
-    app: PATHS.app
+    app: PATHS.app,
+    vendor: [
+      // react
+      'react',
+      'react-dom',
+      'react-redux',
+      'react-router',
+      'react-router-redux',
+      'redux',
+      'redux-thunk',
+      'redux-saga',
+      
+      // react components
+      'react-player',
+      'react-disqus',
+      'react-disqus-thread',
+      'react-redux-loading-bar',
+      
+      // 3rd dependencies
+      'node-uuid',
+      'classnames',
+      'history',
+      'js-yaml',
+      'marked',
+      'highlight.js',
+      'whatwg-fetch',
+      'fetch-jsonp',
+      'es6-promise',
+      'firebase',
+    ]
   },
   output: {
     path: PATHS.build,
@@ -58,40 +88,7 @@ const config = {
       loaders: ['babel?cacheDirectory=true'],
       threads: 5
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: Infinity,
-      filename: 'vendor.js',
-      chunks: [
-        // react
-        'react',
-        'react-dom',
-        'react-redux',
-        'react-router',
-        'react-router-redux',
-        'redux',
-        'redux-thunk',
-        'redux-saga',
-        
-        // react components
-        'react-player',
-        'react-disqus',
-        'react-disqus-thread',
-        'react-redux-loading-bar',
-        
-        // 3rd dependencies
-        'node-uuid',
-        'classnames',
-        'history',
-        'js-yaml',
-        'marked',
-        'highlight.js',
-        'whatwg-fetch',
-        'fetch-jsonp',
-        'es6-promise',
-        'firebase',
-      ],
-    }),
+    new CommonsChunkPlugin('vendor', 'vendor.js'),
     new ExtractTextPlugin('[name].css'),
     new HtmlWebpackPlugin({ // 根据模板插入css/js等生成最终HTML
       // favicon: './assets/images/favicon-144x144.png', // favicon路径，通过webpack引入同时可以生成hash值
@@ -99,7 +96,7 @@ const config = {
       template: './src/index.template', // html模板路径
       inject: 'body', // js插入的位置，true/'head'/'body'/false
       hash: !!isProd, // 为静态资源生成hash值
-      // chunks: ['vendor', 'app'], // 需要引入的chunk，不配置就会引入所有页面的资源
+      chunks: ['vendor', 'app'], // 需要引入的chunk，不配置就会引入所有页面的资源
     }),
     new SWPrecacheWebpackPlugin(SW_PRECACHE_CONFIG)
   ],

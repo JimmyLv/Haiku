@@ -16,8 +16,8 @@ const isProd = process.env.NODE_ENV === 'production'
 const PATHS = {
   app: path.join(__dirname, 'src/index.jsx'),
   build: path.join(__dirname, 'public'),
-  // publicPath: '//odnk5k6v9.bkt.clouddn.com/'
-  publicPath: './'
+  publicPath: '//odnk5k6v9.bkt.clouddn.com/'
+  // publicPath: './'
 }
 
 const SW_PRECACHE_CONFIG = {
@@ -30,6 +30,10 @@ const SW_PRECACHE_CONFIG = {
     {
       handler: 'cacheFirst',
       urlPattern: /[.]mp3$/,
+    },
+    {
+      handler: 'cacheFirst',
+      urlPattern: /^https:\/\/odnk5k6v9\.bkt\.clouddn\.com/,
     },
     {
       handler: 'fastest',

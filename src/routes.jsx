@@ -2,6 +2,8 @@ import React from 'react'
 import { Router, Route, IndexRoute, IndexRedirect } from 'react-router'
 import store from './store'
 
+import AppContainer from './containers'
+
 import { REQUEST_ARTICLE_SUMMARY, REQUEST_MUSIC } from './constants/actionTypes'
 import { fetchArticleIfNeeded } from './ducks/article'
 
@@ -9,11 +11,7 @@ const renderRoutes = (history) => (
   <Router history={history}>
     <Route
       path="/"
-      getComponent={(location, callback) => {
-        require.ensure([], require => {
-          callback(null, require('./containers').AppContainer)
-        }, 'AppContainer')
-      }}
+      component={AppContainer}
       onEnter={() => store.dispatch({ type: REQUEST_MUSIC })}
     >
       <IndexRedirect to="/note-blog" />

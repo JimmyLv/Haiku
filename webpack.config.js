@@ -36,7 +36,7 @@ const config = {
   output: {
     path: PATHS.build,
     publicPath: isProd ? PATHS.publicPath : '',
-    filename: 'bundle.js'
+    filename: '[name].bundle.js'
   },
   
   module: {

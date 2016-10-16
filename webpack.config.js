@@ -29,11 +29,7 @@ const SW_PRECACHE_CONFIG = {
   runtimeCaching: [
     {
       handler: 'cacheFirst',
-      urlPattern: /[.]mp3$/,
-    },
-    {
-      handler: 'cacheFirst',
-      urlPattern: /^https:\/\/odnk5k6v9\.bkt\.clouddn\.com/,
+      urlPattern: /^https:\/\/oesam4fld\.qnssl\.com/,
     },
     {
       handler: 'fastest',

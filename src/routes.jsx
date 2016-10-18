@@ -3,6 +3,7 @@ import { Router, Route, IndexRoute, IndexRedirect } from 'react-router'
 import store from './store'
 
 import { AppContainer } from './containers'
+import { BlogContainer } from './containers/blog'
 
 import { REQUEST_ARTICLE_SUMMARY, REQUEST_MUSIC } from './constants/actionTypes'
 import { fetchArticleIfNeeded } from './ducks/article'
@@ -17,11 +18,7 @@ const renderRoutes = (history) => (
       <IndexRedirect to="/note-blog" />
       <Route
         path="note-blog"
-        getComponent={(location, callback) => {
-          require.ensure([], require => {
-            callback(null, require('./containers/blog').BlogContainer)
-          }, 'BlogContainer')
-        }}
+        component={BlogContainer}
         onEnter={() => store.dispatch({ type: REQUEST_ARTICLE_SUMMARY })}
       >
         <IndexRoute

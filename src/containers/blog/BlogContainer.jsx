@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
-import ReactDisqus from 'react-disqus'
+// import ReactDisqus from 'react-disqus'
 // import ReactDisqus from 'react-disqus-thread'
 import { v4 } from 'node-uuid'
 
@@ -41,13 +41,14 @@ export default class BlogContainer extends Component {
         <SideBar selectedCategory={params.category || '思考'} categories={categories}/>
         <div className={classnames('col-md-8 col-xs-12 aside3', { 'm-hide': this.props.showContent })}>
           {React.cloneElement(this.props.children, { ...this.props })}
-          <ReactDisqus
-            shortname="nobackend-website"
-            identifier="nobackend-website"
-            pageurl="http://haiku.jimmylv.info"
-          />
         </div>
       </div>
     )
   }
 }
+//
+// <ReactDisqus
+// shortname="nobackend-website"
+// identifier="nobackend-website"
+// pageurl="http://haiku.jimmylv.info"
+//   />

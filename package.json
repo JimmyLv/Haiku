@@ -5,7 +5,7 @@
   "main": "./src/index.jsx",
   "scripts": {
     "clean": "rm -rf public && rm -rf _site",
-    "serve": "webpack --config webpack.dll.js && webpack-dev-server",
+    "serve": "webpack-dev-server",
     "build:pwa": "cp favicon.ico cache-polyfill.js public/ && sw-precache --navigate-fallback='index.html' --root='public/' --static-file-globs='public/**/!(*map*)'",
     "build:webpack": "cross-env NODE_ENV=production webpack --progress --colors --hide-modules",
     "build:stats": "webpack --profile --json > stats.json",

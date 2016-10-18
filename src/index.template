@@ -29,6 +29,5 @@
         });
     }
 </script>
-<script src="./vendor.js"></script>
 </body>
 </html>

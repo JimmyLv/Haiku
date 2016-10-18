@@ -44,7 +44,7 @@ export default class BlogContainer extends Component {
           <ReactDisqus
             shortname="nobackend-website"
             identifier="nobackend-website"
-            pageurl="http://haiku.jimmylv.info"
+            pageurl="https://haiku.jimmylv.info"
           />
         </div>
       </div>

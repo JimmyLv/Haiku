@@ -1,17 +1,10 @@
-import React, { PropTypes } from 'react'
-import { Provider } from 'react-redux'
+import { mount } from 'enzyme'
 
-import renderRoutes from '../routes'
-
-const Root = ({ store, history }) => (
-  <Provider store={store}>
-    {renderRoutes(history)}
-  </Provider>
-)
-
-Root.propTypes = {
-  store: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired
-}
-
-export default Root
+describe('Enzyme Mount', () => {
+  it('should delete Todo when click button', () => {
+    let app = mount(<App />)
+    let todoLength = app.find('li').length
+    app.find('button.delete').at(0).simulate('click')
+    expect(app.find('li').length).to.equal(todoLength - 1)
+  })
+})

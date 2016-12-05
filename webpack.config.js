@@ -10,6 +10,7 @@ const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -95,6 +96,7 @@ const config = {
   module: {
     loaders: [
       { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['react-hot', 'happypack/loader'] },
+      { test: /\.json$/, loader: 'json' },
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css?sourceMap!postcss') },
       { test: /\.less$/, loader: ExtractTextPlugin.extract('style', 'css?sourceMap!postcss!less') },
       { test: /\.(eot|woff|woff2|ttf|svg)(\?\S*)?$/, loader: 'url?limit=100000&name=./fonts/[name].[ext]' },
@@ -128,6 +130,14 @@ const config = {
   resolve: {
     extensions: ['', '.js', '.jsx', '.json'],
     modulesDirectories: ['node_modules', 'assets/styles', 'assets/images']
+  },
+
+  externals: {
+      'jsdom': 'window',
+      'cheerio': 'window',
+      'react/lib/ExecutionEnvironment': true,
+      'react/lib/ReactContext': 'window',
+      // 'react/addons': true,  
   }
 }
 
@@ -145,7 +155,15 @@ if (isProd) {
         warnings: false
       }
     }),
-    new webpack.optimize.OccurenceOrderPlugin()
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin() // Merge chunks
+    // new CompressionPlugin({
+    //   asset: '[path].gz[query]',
+    //   algorithm: 'gzip',
+    //   test: /\.js$|\.css$|\.html$/,
+    //   threshold: 10240,
+    //   minRatio: 0.8
+    // })
   )
 } else {
   config.entry.app = [

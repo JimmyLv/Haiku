@@ -4,8 +4,10 @@
   "description": "A powerful rich interactive web application by using nobackend tech stack.",
   "main": "./src/index.jsx",
   "scripts": {
+    "start": "npm run serve",
     "clean": "rm -rf public && rm -rf _site",
-    "serve": "webpack-dev-server",
+    "serve": "webpack-dashboard -- webpack-dev-server",
+    "serve:prod": "npm run clean && npm run build && jekyll serve",
     "build:pwa": "cp favicon.ico cache-polyfill.js public/ && sw-precache --navigate-fallback='index.html' --root='public/' --static-file-globs='public/**/!(*map*)'",
     "build:webpack": "cross-env NODE_ENV=production webpack --progress --colors --hide-modules",
     "build:stats": "webpack --profile --json > stats.json",
@@ -16,8 +18,7 @@
     "test": "karma start --single-run=true",
     "test:codecov": "cat coverage/*/lcov.info | codecov",
     "deploy:cdn": "cd scripts && ./qrsync-v2 conf.json",
-    "deploy:prod": "npm run fix && npm run test && npm run build && npm run cdn",
-    "start": "npm run clean && npm run build && jekyll serve"
+    "deploy:prod": "npm run fix && npm run test && npm run build && npm run cdn"
   },
   "repository": {
     "type": "git",
@@ -119,6 +120,7 @@
     "npm-install-webpack-plugin": "^4.0.4",
     "postcss-loader": "^0.8.2",
     "precss": "^1.4.0",
+    "progress-bar-webpack-plugin": "^1.9.3",
     "qrcode.react": "^0.6.1",
     "raw-loader": "^0.5.1",
     "react-addons-test-utils": "^15.3.2",
@@ -136,6 +138,7 @@
     "sw-precache-webpack-plugin": "^0.5.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2",
+    "webpack-dashboard": "^0.2.1",
     "webpack-dev-server": "^1.16.2",
     "webpack-stream": "^3.1.0",
     "yaml-loader": "^0.1.0",

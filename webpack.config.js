@@ -11,6 +11,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
+const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const DashboardPlugin = require('webpack-dashboard/plugin')
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -124,6 +126,7 @@ const config = {
       hash: !!isProd, // 为静态资源生成hash值
       chunks: ['vendor', 'app'], // 需要引入的chunk，不配置就会引入所有页面的资源
     }),
+    new ProgressBarPlugin(),
     new SWPrecacheWebpackPlugin(SW_PRECACHE_CONFIG)
   ],
   
@@ -182,6 +185,7 @@ if (isProd) {
     port: 8080
   }
   config.plugins.push(
+    new DashboardPlugin(),
     new webpack.HotModuleReplacementPlugin()
   )
 }

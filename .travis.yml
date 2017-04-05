@@ -25,7 +25,8 @@ before_install:
 script:
 #  - npm install -g firebase-tools
 #  - rm -rf .happypack
-  - npm install
+  - npm install -g yarn
+  - yarn install --ignore-engines --pure-lockfile
   - npm run clean
   - npm run lint
   - npm run build

@@ -9,7 +9,7 @@ import type { ArticleAction } from '../flowtypes/actionTypes'
 import { hideLoading, showLoading } from 'react-redux-loading-bar'
 
 const shouldFetchArticle =
-  (state, id) => !(state.article.id && state.article.id === id)
+  ({ article }, id) => !(article.id && article.id === id)
 
 const receiveArticle =
   (content, id) => (dispatch: Function) => {
@@ -45,19 +45,19 @@ const initialArticle = {
 
 function articleReducer(state: Article = initialArticle,
                         action: ArticleAction): Article {
-  const { type, payload } = action
-  
+  const { type, payload: { content, id } } = action
+
   switch (type) {
     case FETCH_ARTICLE: {
-      const result = payload.content.split('---')
+      const result = content.split('---')
       return {
-        id: payload.id,
+        id: id,
         meta: jsyaml.load(result[1]),
         content: result.slice(2).join('---')
       }
     }
     case FETCH_ARTICLE_ERROR:
-      console.warn('Failed to fetch article: ', payload)
+      console.warn(`Failed to fetch article: ${id}`)
       return state
     default:
       return state

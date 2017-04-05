@@ -10,7 +10,6 @@ const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
-const CompressionPlugin = require('compression-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 
@@ -69,13 +68,13 @@ const config = {
       'redux',
       'redux-thunk',
       'redux-saga',
-      
+
       // react components
       'react-player',
       'react-disqus',
       'react-disqus-thread',
       'react-redux-loading-bar',
-      
+
       // 3rd dependencies
       'node-uuid',
       'classnames',
@@ -94,7 +93,7 @@ const config = {
     publicPath: isProd ? PATHS.publicPath : '',
     filename: '[name].bundle.js'
   },
-  
+
   module: {
     loaders: [
       { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['react-hot', 'happypack/loader'] },
@@ -108,7 +107,7 @@ const config = {
   postcss() {
     return [precss, autoprefixer]
   },
-  
+
   plugins: [
     new HappyPack({
       cache: true,
@@ -129,18 +128,18 @@ const config = {
     new ProgressBarPlugin(),
     new SWPrecacheWebpackPlugin(SW_PRECACHE_CONFIG)
   ],
-  
+
   resolve: {
     extensions: ['', '.js', '.jsx', '.json'],
     modulesDirectories: ['node_modules', 'assets/styles', 'assets/images']
   },
 
   externals: {
-      'jsdom': 'window',
-      'cheerio': 'window',
-      'react/lib/ExecutionEnvironment': true,
-      'react/lib/ReactContext': 'window',
-      // 'react/addons': true,  
+    'jsdom': 'window',
+    'cheerio': 'window',
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': 'window',
+    // 'react/addons': true,
   }
 }
 
@@ -170,7 +169,7 @@ if (isProd) {
   )
 } else {
   config.entry.app = [
-    'webpack-dev-server/client?http://0.0.0.0:8080', // WebpackDevServer host and port
+    'webpack-dev-server/client?http://0.0.0.0:8088', // WebpackDevServer host and port
     'webpack/hot/only-dev-server',
     PATHS.app
   ]
@@ -182,7 +181,7 @@ if (isProd) {
     inline: true,
     progress: true,
     stats: { children: false, colors: true, reasons: false },
-    port: 8080
+    port: 8088
   }
   config.plugins.push(
     new DashboardPlugin(),

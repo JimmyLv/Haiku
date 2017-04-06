@@ -63,6 +63,7 @@ after_success:
   # Deploy to Coding Page
   - |
     cd public
+    cat index.html
     touch .nojekyll
     git init
     git add .

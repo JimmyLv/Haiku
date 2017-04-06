@@ -17,15 +17,21 @@ type PropsType = {
   })
 )
 export default class Navigation extends Component {
-  constructor(props) {
-    super(props)
-    this.toggleUserLogin = this.toggleUserLogin.bind(this)
-    this.state = {
-      hasLoggedIn: false
-    }
+  state = {
+    hasLoggedIn: false
   }
 
   props: PropsType
+
+  static defaultProps = {
+    menuList: [
+      { name: 'Hello', link: '/hello' },
+      { name: 'AppList', link: '/app-list' },
+      { name: 'Blog', link: '/note-blog' },
+      { name: 'Photo', link: '/photo' },
+      { name: 'Zhihu', link: '/pages/zhihu' }
+    ]
+  }
 
   toggleUserLogin() {
     this.setState({
@@ -46,21 +52,15 @@ export default class Navigation extends Component {
             to={menu.link}
           > {menu.name} </Link>)
         )}
-        {hasLoggedIn && <Link to="/dashboard">Dashboard</Link>}
-        {hasLoggedIn && <Link to="/users">Users</Link>}
-        <a onClick={this.toggleUserLogin}>{hasLoggedIn ? username : 'Firebase'}</a>
+        {hasLoggedIn ?
+          <span>
+            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/users">Users</Link>
+          </span> : null
+        }
+        <a onClick={() => this.toggleUserLogin()}>{hasLoggedIn ? username : 'Firebase'}</a>
         <a href="https://github.com/JimmyLv/nobackend.website" target="_blank">GitHub</a>
       </div>
     )
   }
-}
-
-Navigation.defaultProps = {
-  menuList: [
-    { name: 'Hello', link: '/hello' },
-    { name: 'AppList', link: '/app-list' },
-    { name: 'Blog', link: '/note-blog' },
-    { name: 'Photo', link: '/photo' },
-    { name: 'Zhihu', link: '/pages/zhihu' }
-  ]
 }

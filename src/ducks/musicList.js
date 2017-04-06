@@ -7,7 +7,8 @@ import type { MusicAction } from '../flowtypes/actionTypes'
 
 export const fetchMusicList =
   () => (dispatch: Function) =>
-    fetchJsonp('https://api.lostg.com/music/163/collections/429176788')
+    // fetchJsonp('https://api.lostg.com/music/163/collections/429176788')
+    fetchJsonp('https://app.mawenbao.com/music-api-server/?p=netease&t=playlist&i=429176788&c=abc123&q=high')
       .then(res => res.json())
       .then(json => dispatch({
         type: FETCH_MUSIC,

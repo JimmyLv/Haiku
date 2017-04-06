@@ -22,7 +22,7 @@ const renderRoutes = history => (
         onEnter={() => store.dispatch({ type: REQUEST_ARTICLE_SUMMARY })}
       >
         <IndexRoute
-          getComponent={(location, callback) => {
+          getComponent={({ routes, params, location }, callback) => {
             require.ensure([], (require) => {
               callback(null, require('./containers/blog').BlogHomeContainer)
             }, 'BlogHomeContainer')
@@ -30,7 +30,7 @@ const renderRoutes = history => (
         />
         <Route
           path=":category/:id/"
-          getComponent={(location, callback) => {
+          getComponent={({ routes, params, location }, callback) => {
             require.ensure([], (require) => {
               callback(null, require('./containers/blog').BlogContentContainer)
             }, 'BlogContentContainer')
@@ -40,7 +40,7 @@ const renderRoutes = history => (
       </Route>
       <Route
         path="app-list"
-        getComponent={(location, callback) => {
+        getComponent={({ routes, params, location }, callback) => {
           require.ensure([], (require) => {
             callback(null, require('./containers/pages').AppListPage)
           }, 'AppListPage')
@@ -48,7 +48,7 @@ const renderRoutes = history => (
       />
       <Route
         path="photo"
-        getComponent={(location, callback) => {
+        getComponent={({ routes, params, location }, callback) => {
           require.ensure([], (require) => {
             callback(null, require('./containers/pages').PhotoPage)
           }, 'PhotoPage')
@@ -56,7 +56,7 @@ const renderRoutes = history => (
       />
       <Route
         path="*"
-        getComponent={(location, callback) => {
+        getComponent={({ routes, params, location }, callback) => {
           require.ensure([], (require) => {
             callback(null, require('./containers/pages').NotFoundPage)
           }, 'NotFoundPage')

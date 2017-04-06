@@ -19,7 +19,8 @@
     "test": "karma start --single-run=true",
     "test:codecov": "cat coverage/*/lcov.info | codecov",
     "deploy:cdn": "cd scripts && ./qrsync-v2 conf.json",
-    "deploy:prod": "npm run fix && npm run test && npm run build && npm run cdn"
+    "deploy:prod": "npm run fix && npm run test && npm run build && npm run cdn",
+    "precommit": "npm run lint"
   },
   "repository": {
     "type": "git",

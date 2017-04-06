@@ -24,16 +24,16 @@ const SocialShare = ({ tags, title }: PropsType) => {
     <div className="social-share">
       {socialShare.map((share, index) => (
         <a key={index}>
-          <i className={classnames('fa faa-shake animated', share.icon)}/>
+          <i className={classnames('fa faa-shake animated', share.icon)} />
         </a>)
       )}
       <a href={`http://service.weibo.com/share/share.php?url= ${encodedShareLink}&amptitle=${encodedShareContent}`} target="_blank">
-        <i className="fa fa-weibo faa-shake animated"/>
+        <i className="fa fa-weibo faa-shake animated" />
       </a>
       <a className="weixin-qr">
-        <i className="fa fa-weixin faa-shake animated"/>
+        <i className="fa fa-weixin faa-shake animated" />
         <div className="qr-code">
-          <QRCode value={encodedShareLink}/>
+          <QRCode value={encodedShareLink} />
         </div>
       </a>
     </div>

@@ -6,6 +6,11 @@
     "plugin:flowtype/recommended"
   ],
   "installedESLint": true,
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
   "plugins": [
     "react",
     "immutable",
@@ -37,14 +42,21 @@
     "consistent-return": 0,
     "no-trailing-spaces": 0,
     // react
+    "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/href-no-hash": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-webpack-loader-syntax": 0,
     "react/jsx-space-before-closing": 0,
     "react/jsx-no-bind": 0,
+    "react/jsx-no-target-blank": 0,
+    "react/no-array-index-key": 0,
+    "react/forbid-prop-types": 0,
     // immutable
     "immutable/no-let": 2,
     //    "immutable/no-this": 2,
     //    "immutable/no-mutation": 2
     // flowtype
-    "flowtype-errors/show-errors": 2,
+    "flowtype-errors/show-errors": 0,
     "flowtype/boolean-style": [2, "boolean"],
     "flowtype/define-flow-type": 1,
     "flowtype/delimiter-dangle": [2, "boolean"],

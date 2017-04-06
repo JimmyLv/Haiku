@@ -24,25 +24,16 @@ export default class Navigation extends Component {
       hasLoggedIn: false
     }
   }
-  
+
   props: PropsType
-  
+
   toggleUserLogin() {
     this.setState({
       hasLoggedIn: !this.state.hasLoggedIn,
       username: 'JimmyLv'
     })
   }
-  
-  showMenuForUserLoggedIn() {
-    return (
-      <span>
-        <Link to="/dashboard">Dashboard</Link>
-        <Link to="/users">Users</Link>
-      </span>
-    )
-  }
-  
+
   render() {
     const { menuList, selectedUrl } = this.props
     const { hasLoggedIn, username } = this.state
@@ -55,7 +46,8 @@ export default class Navigation extends Component {
             to={menu.link}
           > {menu.name} </Link>)
         )}
-        {hasLoggedIn ? this.showMenuForUserLoggedIn() : ''}
+        {hasLoggedIn && <Link to="/dashboard">Dashboard</Link>}
+        {hasLoggedIn && <Link to="/users">Users</Link>}
         <a onClick={this.toggleUserLogin}>{hasLoggedIn ? username : 'Firebase'}</a>
         <a href="https://github.com/JimmyLv/nobackend.website" target="_blank">GitHub</a>
       </div>

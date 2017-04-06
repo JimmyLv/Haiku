@@ -18,7 +18,7 @@ const Article = ({ meta, content, editUrl, filename }) => (
     </div>
     <div className="article-content">
       {meta.layout === 'book' ? meta.books.map((book, index) => <BookInfo key={index} book={book} />) :
-        <ContentParser layout={meta.layout} content={content} />
+      <ContentParser layout={meta.layout} content={content} />
       }
     </div>
     <div className="article-tags">

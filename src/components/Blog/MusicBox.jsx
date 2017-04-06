@@ -3,8 +3,7 @@ import './MusicBox.less'
 
 const MusicBox = ({ musicUrl }) => (
   <div className="music-box">
-    <iframe frameBorder="no" marginHeight="0" width="330" height="86" src={musicUrl}>
-    </iframe>
+    <iframe frameBorder="no" marginHeight="0" width="330" height="86" src={musicUrl} />
   </div>
 )
 

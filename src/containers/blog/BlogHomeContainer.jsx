@@ -26,10 +26,10 @@ export default class BlogHomePage extends Component {
 
     return (
       <div>
-        <HomeHeader/>
+        <HomeHeader />
         <div className="col-md-12">
-          <PostPanel title={'最新文章'} postList={latestPostList}/>
-          {tags.slice(0, 3).map((tag, index) => <PostPanel key={index} title={tag.name} postList={tag.posts}/>)}
+          <PostPanel title={'最新文章'} postList={latestPostList} />
+          {tags.slice(0, 3).map((tag, index) => <PostPanel key={index} title={tag.name} postList={tag.posts} />)}
         </div>
       </div>
     )

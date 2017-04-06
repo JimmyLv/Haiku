@@ -37,10 +37,10 @@ class SideBar extends Component {
           </div>
           <div className="aside1-bottom">
             <a href="{{ $ctrl.rssUrl }}" target="_blank">
-              <i className="fa fa-rss fa-2x"/>
+              <i className="fa fa-rss fa-2x" />
             </a>
             <a href="mailto:{{ $ctrl.email }}">
-              <i className="fa fa-envelope-o fa-2x"/>
+              <i className="fa fa-envelope-o fa-2x" />
             </a>
           </div>
         </div>

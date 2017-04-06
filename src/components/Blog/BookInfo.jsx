@@ -7,7 +7,7 @@ const BookInfo = ({ book }) => (
     <div className="panel-body">
       <div className="row">
         <div className="col-md-4 col-xs-12 center">
-          <img src={book.cover} alt="cover" className="img-thumbnail"/>
+          <img src={book.cover} alt="cover" className="img-thumbnail" />
         </div>
         <div className="col-md-8 col-xs-12">
           <table className="table table-bordered">

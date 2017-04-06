@@ -8,7 +8,7 @@ import { BlogContainer } from './containers/blog'
 import { REQUEST_ARTICLE_SUMMARY, REQUEST_MUSIC } from './constants/actionTypes'
 import { fetchArticleIfNeeded } from './ducks/article'
 
-const renderRoutes = (history) => (
+const renderRoutes = history => (
   <Router history={history}>
     <Route
       path="/"
@@ -23,7 +23,7 @@ const renderRoutes = (history) => (
       >
         <IndexRoute
           getComponent={(location, callback) => {
-            require.ensure([], require => {
+            require.ensure([], (require) => {
               callback(null, require('./containers/blog').BlogHomeContainer)
             }, 'BlogHomeContainer')
           }}
@@ -31,7 +31,7 @@ const renderRoutes = (history) => (
         <Route
           path=":category/:id/"
           getComponent={(location, callback) => {
-            require.ensure([], require => {
+            require.ensure([], (require) => {
               callback(null, require('./containers/blog').BlogContentContainer)
             }, 'BlogContentContainer')
           }}
@@ -41,7 +41,7 @@ const renderRoutes = (history) => (
       <Route
         path="app-list"
         getComponent={(location, callback) => {
-          require.ensure([], require => {
+          require.ensure([], (require) => {
             callback(null, require('./containers/pages').AppListPage)
           }, 'AppListPage')
         }}
@@ -49,7 +49,7 @@ const renderRoutes = (history) => (
       <Route
         path="photo"
         getComponent={(location, callback) => {
-          require.ensure([], require => {
+          require.ensure([], (require) => {
             callback(null, require('./containers/pages').PhotoPage)
           }, 'PhotoPage')
         }}
@@ -57,7 +57,7 @@ const renderRoutes = (history) => (
       <Route
         path="*"
         getComponent={(location, callback) => {
-          require.ensure([], require => {
+          require.ensure([], (require) => {
             callback(null, require('./containers/pages').NotFoundPage)
           }, 'NotFoundPage')
         }}

@@ -1,12 +1,12 @@
 // @flow
 
 import jsyaml from 'js-yaml'
+import { hideLoading, showLoading } from 'react-redux-loading-bar'
+
 import { API_URL } from '../constants/'
 import { FETCH_ARTICLE_ERROR, FETCH_ARTICLE } from '../constants/actionTypes'
 import type { Article } from '../flowtypes/stateTypes'
 import type { ArticleAction } from '../flowtypes/actionTypes'
-
-import { hideLoading, showLoading } from 'react-redux-loading-bar'
 
 const shouldFetchArticle =
   ({ article }, id) => !(article.id && article.id === id)
@@ -44,20 +44,20 @@ const initialArticle = {
 }
 
 function articleReducer(state: Article = initialArticle,
-                        action: ArticleAction): Article {
-  const { type, payload: { content, id } } = action
+  action: ArticleAction): Article {
+  const { type, payload } = action
 
   switch (type) {
     case FETCH_ARTICLE: {
-      const result = content.split('---')
+      const result = payload.content.split('---')
       return {
-        id: id,
+        id: payload.id,
         meta: jsyaml.load(result[1]),
         content: result.slice(2).join('---')
       }
     }
     case FETCH_ARTICLE_ERROR:
-      console.warn(`Failed to fetch article: ${id}`)
+      console.warn(`Failed to fetch article: ${payload.id}`)
       return state
     default:
       return state

@@ -28,7 +28,7 @@ const initialArticleSummary = {
 }
 
 function articleSummaryReducer(state: ArticleSummary = initialArticleSummary,
-                               action: ArticlesAction) {
+  action: ArticlesAction) {
   const { type, payload } = action
   
   switch (type) {

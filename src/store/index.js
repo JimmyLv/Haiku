@@ -15,7 +15,7 @@ import configDevTools from '../config/DevTools'
 
 const sagaMiddleware = createSagaMiddleware()
 
-const store = window.store = createStore(
+const store = createStore(
   combineReducers({
     ...reducers,
     routing: routerReducer,

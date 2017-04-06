@@ -40,7 +40,7 @@ class ContentParser extends Component {
     const { layout, content } = this.props
     return (
       <div id="content-page" className={layout === 'photo' ? 'photo' : ''}>
-        <div dangerouslySetInnerHTML={{ __html: marked(content || '') }}></div>
+        <div dangerouslySetInnerHTML={{ __html: marked(content || '') }} />
       </div>
     )
   }

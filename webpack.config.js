@@ -125,8 +125,7 @@ const config = {
       hash: !!isProd, // 为静态资源生成hash值
       chunks: ['vendor', 'app'], // 需要引入的chunk，不配置就会引入所有页面的资源
     }),
-    new ProgressBarPlugin(),
-    new SWPrecacheWebpackPlugin(SW_PRECACHE_CONFIG)
+    new ProgressBarPlugin()
   ],
 
   resolve: {
@@ -144,6 +143,7 @@ const config = {
 }
 
 if (isProd) {
+  config.devtool = 'cheap-module-source-map'
   config.plugins.push(
     new webpack.DefinePlugin({
       'process.env': {
@@ -158,7 +158,8 @@ if (isProd) {
       }
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin() // Merge chunks
+    new webpack.optimize.AggressiveMergingPlugin(), // Merge chunks
+    new SWPrecacheWebpackPlugin(SW_PRECACHE_CONFIG)
     // new CompressionPlugin({
     //   asset: '[path].gz[query]',
     //   algorithm: 'gzip',
@@ -173,7 +174,7 @@ if (isProd) {
     'webpack/hot/only-dev-server',
     PATHS.app
   ]
-  config.devtool = 'source-map'
+  config.devtool = 'cheap-module-eval-source-map'
   config.devServer = {
     contentBase: PATHS.build,
     historyApiFallback: true,

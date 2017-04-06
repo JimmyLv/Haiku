@@ -28,7 +28,8 @@ function* fetchMusicList() {
     yield take(REQUEST_MUSIC)
     const json = yield call(fetchJsonpData, 'https://api.lostg.com/music/163/collections/461463721')
     yield put({
-      type: FETCH_MUSIC, payload: {
+      type: FETCH_MUSIC,
+      payload: {
         songs: json.map(song => ({
           name: song.title,
           url: song.location,

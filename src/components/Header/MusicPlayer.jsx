@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import ReactPlayer from 'react-player'
 
 import sample from 'lodash/sample'
 import without from 'lodash/without'
 
 import './Player.less'
-import ReactPlayer from 'react-player'
 import Duration from './Duration'
 import { Music } from '../../flowtypes/stateTypes'
 
@@ -85,7 +85,6 @@ export default class MusicPlayer extends Component {
     return (
       <div className="music-player m-player link">
         <ReactPlayer
-          ref="player"
           className="react-player"
           width={0}
           height={0}

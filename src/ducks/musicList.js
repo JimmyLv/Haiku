@@ -30,7 +30,7 @@ const initialMusic = [{
 }]
 
 function musicListReducer(state: Array<Music> = initialMusic,
-                          action: MusicAction): Array<Music> {
+  action: MusicAction): Array<Music> {
   const { type, payload } = action
   
   switch (type) {

@@ -5,7 +5,7 @@ import ReactPlayer from 'react-player'
 import sample from 'lodash/sample'
 import without from 'lodash/without'
 
-import './Player.less'
+import './MusicPlayer.less'
 import Duration from './Duration'
 import { Music } from '../../flowtypes/stateTypes'
 

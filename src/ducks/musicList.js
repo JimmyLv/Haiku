@@ -12,13 +12,7 @@ export const fetchMusicList =
       .then(res => res.json())
       .then(json => dispatch({
         type: FETCH_MUSIC,
-        payload: {
-          songs: json.map(song => ({
-            name: song.title,
-            url: song.location,
-            artists: song.singer
-          }))
-        }
+        payload: json
       }))
       .catch(err => dispatch({ type: FETCH_MUSIC_ERROR, payload: new Error(err.message) }))
 
@@ -31,9 +25,9 @@ const initialMusic = [{
 }]
 
 function musicListReducer(state: Array<Music> = initialMusic,
-  action: MusicAction): Array<Music> {
+                          action: MusicAction): Array<Music> {
   const { type, payload } = action
-  
+
   switch (type) {
     case FETCH_MUSIC:
       return [...payload.songs]

@@ -12,7 +12,7 @@ export const GITHUB = {
 
 export const BASE_URL = `${GITHUB.host}/${GITHUB.user}/${GITHUB.repo}/${GITHUB.branch}`
 
-export const API_URL = `https://raw.githubusercontent.com/${GITHUB.user}/${GITHUB.repo}/${GITHUB.branch}/${GITHUB.folder}`
+export const API_URL = `https://raw.githubusercontent.com/${GITHUB.user}/_posts/${GITHUB.branch}`
 
 export async function getConfig() {
   try {

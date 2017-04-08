@@ -26,13 +26,13 @@ const initialMusic = [{
 
 function musicListReducer(state: Array<Music> = initialMusic,
                           action: MusicAction): Array<Music> {
-  const { type, payload } = action
+  const { type, payload: songs } = action
 
   switch (type) {
     case FETCH_MUSIC:
-      return [...payload.songs]
+      return songs
     case FETCH_MUSIC_ERROR:
-      console.warn('Failed to fetch music list!', payload)
+      console.warn('Failed to fetch music list!', songs)
       return state
     default:
       return state

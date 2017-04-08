@@ -1,121 +1,105 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ReactPlayer from 'react-player'
-
 import sample from 'lodash/sample'
-import without from 'lodash/without'
 
 import './MusicPlayer.less'
 import Duration from './Duration'
-import { Music } from '../../flowtypes/stateTypes'
 
-type PropsType = {
-  musicList: Array<Music>
-}
+const { arrayOf, shape, string } = PropTypes
 
 @connect(
   ({ musicList }) => ({ musicList })
 )
 export default class MusicPlayer extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      selectedMusic: null,
-      showName: false,
-      playing: true,
-      volume: 0.8,
-      played: 0,
-      loaded: 0,
-      duration: 0
-    }
+  static propTypes = {
+    musicList: arrayOf(shape(
+      {
+        name: string.isRequired,
+        url: string.isRequired,
+        lrc_url: string,
+        artists: string.isRequired,
+        provider: string.isRequired
+      }
+    )).isRequired
   }
-  
+
+  state = {
+    _music: null,
+    showName: false,
+    playing: true,
+    volume: 0.8,
+    played: 0,
+    duration: 0
+  }
+
   componentWillMount() {
     this.shuffle()
+    setTimeout(() => {
+      this.togglePlaying()
+      setTimeout(() => {
+        this.togglePlaying()
+      }, 2000)
+    }, 3000)
   }
-  
-  onProgress(state) {
-    // We only want to update time slider if we are not currently seeking
-    if (!this.state.seeking) {
-      this.setState(state)
-    }
-  }
-  
-  setVolume(e) {
-    this.setState({ volume: parseFloat(e.target.value) })
-  }
-  
-  props: PropsType
-  
-  shuffle() {
-    const selectedMusic = sample(without(this.props.musicList, this.state.selectedMusic))
+
+  shuffle = () => {
     this.setState({
-      selectedMusic,
+      _music: sample(this.props.musicList),
       playing: true,
-      played: 0,
-      loaded: 0
+      played: 0
     })
   }
-  
-  togglePlaying() {
-    this.setState({ playing: !this.state.playing })
+
+  togglePlaying = () => {
+    this.setState({
+      playing: !this.state.playing
+    })
   }
-  
-  toggleMuting() {
+
+  toggleMuting = () => {
     this.setState({ volume: this.state.volume > 0.5 ? 0 : 1 })
   }
-  
-  stop() {
-    this.setState({ selectedMusic: null, playing: false })
-  }
-  
-  toggleName() {
+
+  toggleName = () => {
     this.setState({ showName: !this.state.showName })
   }
-  
+
   render() {
-    const {
-      playing, volume,
-      played, duration,
-      showName, selectedMusic
-    } = this.state
-    
-    const selectedMusicName = `${selectedMusic.name} - ${selectedMusic.artists}`
-    
+    const { playing, volume, played, duration, showName, _music } = this.state
+
+    const music = _music || sample(this.props.musicList)
+    const musicName = `${music.name} - ${music.artists}`
     return (
       <div className="music-player m-player link">
         <ReactPlayer
           className="react-player"
           width={0}
           height={0}
-          url={selectedMusic.url}
+          url={music.url}
           playing={playing}
           volume={volume}
           onStart={() => console.log('onStart')}
           onPlay={() => this.setState({ playing: true })}
           onPause={() => this.setState({ playing: false })}
-          onBuffer={() => console.log('onBuffer')}
-          onEnded={this.shuffle.bind(this)}
-          onError={e => console.log('onError', e)}
-          onProgress={this.onProgress.bind(this)}
           onDuration={d => this.setState({ duration: d })}
         />
-        <a href={`http://music.163.com/#/search/m/?s=${selectedMusicName}`} target="_blank">
+        <a href={`http://music.163.com/#/search/m/?s=${musicName}`} target="_blank">
           <i className={playing ? 'faa-float animated fa fa-lg fa-music' : 'fa fa-lg fa-music'} />
         </a>
-        <a onClick={this.togglePlaying.bind(this)}>
+        <a onClick={this.togglePlaying}>
           <i className={!playing ? 'fa fa-play' : 'fa fa-pause'} />
         </a>
-        <a onClick={this.shuffle.bind(this)}>
+        <a onClick={this.shuffle}>
           <i className="fa fa-random" />
         </a>
-        <a onClick={this.toggleMuting.bind(this)}>
+        <a onClick={this.toggleMuting}>
           <i className={volume === 0 ? 'fa fa-volume-off' : 'fa fa-volume-up'} />
         </a>
-        <a onClick={this.toggleName.bind(this)}>
+        <a onClick={this.toggleName}>
           <Duration seconds={duration * (1 - played)} />
           <span className="music-name m-hide fx-fade-normal fx-dur-600 fx-ease-none">
-            {showName ? selectedMusicName : ''}
+            {showName ? musicName : ''}
           </span>
         </a>
       </div>

@@ -7,11 +7,11 @@ import {
   FETCH_ARTICLE_SUMMARY_ERROR,
   REQUEST_MUSIC,
   FETCH_MUSIC,
-  FETCH_MUSIC_ERROR,
+  FETCH_MUSIC_ERROR
 } from '../constants/actionTypes'
 
 const fetchData = url => fetch(url).then(res => res.json())
-const fetchJsonpData = url => fetchJsonp(url).then(res => res.json())
+const fetchJsonpData = url => fetchJsonp(url, { jsonpCallback: 'c' }).then(res => res.json())
 
 function* fetchArticleSummary() {
   try {
@@ -26,16 +26,10 @@ function* fetchArticleSummary() {
 function* fetchMusicList() {
   try {
     yield take(REQUEST_MUSIC)
-    const json = yield call(fetchJsonpData, 'https://api.lostg.com/music/163/collections/461463721')
+    const json = yield call(fetchJsonpData, 'https://app.mawenbao.com/music-api-server/?p=netease&t=playlist&i=429176788&q=high')
     yield put({
       type: FETCH_MUSIC,
-      payload: {
-        songs: json.map(song => ({
-          name: song.title,
-          url: song.location,
-          artists: song.singer
-        }))
-      }
+      payload: json.songs
     })
   } catch (err) {
     yield put({ type: FETCH_MUSIC_ERROR, payload: err })
@@ -45,6 +39,6 @@ function* fetchMusicList() {
 export default function* rootSaga() {
   yield [
     fork(fetchMusicList),
-    fork(fetchArticleSummary),
+    fork(fetchArticleSummary)
   ]
 }

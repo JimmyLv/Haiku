@@ -1,4 +1,6 @@
 // @flow
+import { normalize } from 'normalizr'
+import { articles } from '../schema/schema'
 
 import { FETCH_ARTICLE_SUMMARY, FETCH_ARTICLE_SUMMARY_ERROR } from '../constants/actionTypes'
 import type { ArticleSummary } from '../flowtypes/stateTypes'
@@ -16,24 +18,27 @@ const initialArticle = {
   meta: {
     title: 'Hello World!',
     layout: 'post',
-    tags: ['hello', 'world']
+    tags: ['hello', 'world'],
   },
-  content: 'Hell0 W0rld!'
+  content: 'Hell0 W0rld!',
 }
 
 const initialArticleSummary = {
   categories: [{ name: '思考', posts: [initialArticle] }],
   tags: [{ name: 'hello', size: 1, posts: [initialArticle] }],
-  paginator: [initialArticle]
+  paginator: [initialArticle],
 }
 
 function articleSummaryReducer(state: ArticleSummary = initialArticleSummary,
-  action: ArticlesAction) {
+                               action: ArticlesAction) {
   const { type, payload } = action
-  
+
   switch (type) {
-    case FETCH_ARTICLE_SUMMARY:
+    case FETCH_ARTICLE_SUMMARY: {
+      const normalizedData = normalize(payload, articles)
+      console.info('normalized articles', normalizedData)
       return { ...payload }
+    }
     case FETCH_ARTICLE_SUMMARY_ERROR:
       console.warn('Failed to fetch article list: ', payload)
       return state

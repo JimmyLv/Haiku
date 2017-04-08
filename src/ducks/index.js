@@ -1,4 +1,4 @@
 export musicList from './musicList'
-export articleSummary from './articleSummary'
+export articleSummary from './articles'
 export article from './article'
 export toggle from './toggle'

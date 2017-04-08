@@ -2,6 +2,8 @@
 
 import jsyaml from 'js-yaml'
 import { hideLoading, showLoading } from 'react-redux-loading-bar'
+import { normalize } from 'normalizr'
+import * as schema from '../schema/schema'
 
 import { API_URL } from '../constants/'
 import { FETCH_ARTICLE_ERROR, FETCH_ARTICLE } from '../constants/actionTypes'
@@ -9,7 +11,7 @@ import type { Article } from '../flowtypes/stateTypes'
 import type { ArticleAction } from '../flowtypes/actionTypes'
 
 const shouldFetchArticle =
-  ({ article }, id) => !(article.id && article.id === id)
+  ({ article: { id } }, currentId) => !(id && id === currentId)
 
 const receiveArticle =
   (content, id) => (dispatch: Function) => {
@@ -50,11 +52,15 @@ function articleReducer(state: Article = initialArticle,
   switch (type) {
     case FETCH_ARTICLE: {
       const result = payload.content.split('---')
-      return {
+      const article = {
         id: payload.id,
         meta: jsyaml.load(result[1]),
         content: result.slice(2).join('---')
       }
+
+      const normalizedData = normalize(article, schema.article)
+      console.info('normalized article', normalizedData)
+      return article
     }
     case FETCH_ARTICLE_ERROR:
       console.warn(`Failed to fetch article: ${payload.id}`)

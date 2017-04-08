@@ -43,6 +43,7 @@
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
     "node-uuid": "latest",
+    "normalizr": "^3.2.2",
     "qrcode.react": "^0.6.1",
     "react": "^15.5.1",
     "react-disqus": "^1.0.2",

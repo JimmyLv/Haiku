@@ -1,0 +1,15 @@
+{
+  "short_name": "Haiku",
+  "name": "Haiku | 最美博客 via JimmyLv",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./",
+  "background_color": "#EAEDEF",
+  "theme_color": "#2DBE60",
+  "display": "standalone"
+}

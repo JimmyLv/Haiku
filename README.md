@@ -4,6 +4,7 @@
 
 [![Build Status](https://travis-ci.org/JimmyLv/Haiku.svg?branch=gh-pages)](https://travis-ci.org/JimmyLv/Haiku)
 [![codecov](https://codecov.io/gh/JimmyLv/Haiku/branch/gh-pages/graph/badge.svg)](https://codecov.io/gh/JimmyLv/Haiku)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2FJimmyLv%2FHaiku.svg?type=shield)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2FJimmyLv%2FHaiku?ref=badge_shield)
 
 [![Dependency Status](https://img.shields.io/david/JimmyLv/Haiku.svg?style=flat-square)](https://david-dm.org/JimmyLv/Haiku)
 [![devDependency
@@ -59,3 +60,6 @@ git push
 -------
 
 Host on [GitHub](https://github.com/JimmyLv/Haiku) / [AWS S3](http://nobackend.website.s3-website-ap-southeast-1.amazonaws.com) / [七牛](http://7xjbdq.com1.z0.glb.clouddn.com/_ng/#!/note) / [Firebase](http://nobackend-website.firebaseapp.com/)
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2FJimmyLv%2FHaiku.svg?type=large)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2FJimmyLv%2FHaiku?ref=badge_large)

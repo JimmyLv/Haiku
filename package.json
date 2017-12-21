@@ -104,7 +104,7 @@
     "ignore-loader": "0.1.2",
     "istanbul-instrumenter-loader": "2.0.0",
     "json-loader": "0.5.7",
-    "karma": "1.7.1",
+    "karma": "2.0.0",
     "karma-chai": "0.1.0",
     "karma-chrome-launcher": "2.2.0",
     "karma-coverage": "1.1.1",

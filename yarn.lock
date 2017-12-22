@@ -6974,9 +6974,9 @@ redux-logger@2.10.2:
   dependencies:
     deep-diff "0.3.4"
 
-redux-saga@^0.14.5:
-  version "0.14.5"
-  resolved "https://registry.npmjs.org/redux-saga/-/redux-saga-0.14.5.tgz#8faa627e7d0ea9417455a6544f82d31fe610bbac"
+redux-saga@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.16.0.tgz#0a231db0a1489301dd980f6f2f88d8ced418f724"
 
 redux-thunk@^2.2.0:
   version "2.2.0"

@@ -124,7 +124,7 @@
     "redux-devtools": "3.4.1",
     "redux-devtools-dock-monitor": "1.1.2",
     "redux-devtools-log-monitor": "1.4.0",
-    "redux-logger": "2.10.2",
+    "redux-logger": "3.0.6",
     "routes": "2.1.0",
     "style-loader": "0.16.1",
     "sw-precache": "5.2.0",

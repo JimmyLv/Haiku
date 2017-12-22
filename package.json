@@ -38,7 +38,7 @@
     "font-awesome": "^4.7.0",
     "font-awesome-animation": "0.0.10",
     "highlight.js": "^9.10.0",
-    "history": "^3.0.0",
+    "history": "^4.0.0",
     "js-yaml": "^3.8.3",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",

@@ -34,7 +34,7 @@
     "classnames": "^2.2.5",
     "es6-promise": "^4.1.0",
     "fetch-jsonp": "^1.0.6",
-    "firebase": "^3.7.5",
+    "firebase": "^4.0.0",
     "font-awesome": "^4.7.0",
     "font-awesome-animation": "0.0.10",
     "highlight.js": "^9.10.0",

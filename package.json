@@ -30,7 +30,7 @@
   "author": "Jimmy Lv",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.0.0",
     "classnames": "^2.2.5",
     "es6-promise": "^4.1.0",
     "fetch-jsonp": "^1.0.6",

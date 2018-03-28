@@ -102,7 +102,7 @@
     "html-loader": "0.4.5",
     "html-webpack-plugin": "2.30.1",
     "ignore-loader": "0.1.2",
-    "istanbul-instrumenter-loader": "2.0.0",
+    "istanbul-instrumenter-loader": "3.0.1",
     "json-loader": "0.5.7",
     "karma": "2.0.0",
     "karma-chai": "0.1.0",

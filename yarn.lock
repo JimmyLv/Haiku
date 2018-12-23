@@ -6475,6 +6475,13 @@ prop-types@^15.5.0:
   dependencies:
     fbjs "^0.8.9"
 
+prop-types@^15.6.0:
+  version "15.6.2"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
+  dependencies:
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
+
 proxy-addr@~1.1.3:
   version "1.1.4"
   resolved "https://registry.npmjs.org/proxy-addr/-/proxy-addr-1.1.4.tgz#27e545f6960a44a627d9b44467e35c1b6b4ce2f3"
@@ -6541,10 +6548,11 @@ qr.js@0.0.0:
   version "0.0.0"
   resolved "https://registry.npmjs.org/qr.js/-/qr.js-0.0.0.tgz#cace86386f59a0db8050fa90d9b6b0e88a1e364f"
 
-qrcode.react@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.npmjs.org/qrcode.react/-/qrcode.react-0.6.1.tgz#e718192d17cdf87cb1f156a34cea16dd67575932"
+qrcode.react@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/qrcode.react/-/qrcode.react-0.9.0.tgz#66ecd0dbf7c62cbc820085bc422e22e2cdf8ac4d"
   dependencies:
+    prop-types "^15.6.0"
     qr.js "0.0.0"
 
 qs@6.4.0, qs@~6.4.0:

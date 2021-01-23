@@ -3335,9 +3335,10 @@ follow-redirects@1.0.0:
   dependencies:
     debug "^2.2.0"
 
-font-awesome-animation@0.0.10:
-  version "0.0.10"
-  resolved "https://registry.npmjs.org/font-awesome-animation/-/font-awesome-animation-0.0.10.tgz#50f0491bd98d4ba2f7c0cf94c2a39c297c106d9c"
+font-awesome-animation@0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/font-awesome-animation/-/font-awesome-animation-0.4.2.tgz#47b78293559bccac4e9f09e461bbb07305bbba23"
+  integrity sha512-IH8+1JM5xkQc4gaK95ypEn+wr8Mnv1bC3varly5Dzc9+Im9Q3QHaLFkIsh64flP2K6xeF26yd/wyanj1heg9OA==
 
 font-awesome@^4.7.0:
   version "4.7.0"
